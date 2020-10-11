@@ -1,0 +1,44 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      Menu
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active" routerLink="/home">Home</a>
+      <a mat-list-item routerLinkActive="active" routerLink="/teacher">Teacher</a>
+      <a mat-list-item routerLinkActive="active" routerLink="/student">Student</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLinkActive="active" routerLink="/account">Accounts</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <img src="assets/icon/menu-white-18dp.svg" alt="analytics" width="25">
+      </button>
+      <span routerLink="/home">Learn.it</span>
+      <!-- <a >Menu</a> -->
+      <div style="margin-left: auto;" class="nav-menu-link">
+        <a mat-stroked-button color="primary" routerLinkActive="active" routerLink="/home">Home</a>
+        <a mat-stroked-button color="primary" routerLinkActive="active" routerLink="/teacher">Teacher</a>
+        <a mat-stroked-button color="primary" routerLinkActive="active" routerLink="/student">Student</a>
+        <a mat-stroked-button color="primary" routerLinkActive="active" routerLink="/account">Account</a>        
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div class="router-div">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- <app-teacher></app-teacher>
+    <hr>
+    <app-student></app-student> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
