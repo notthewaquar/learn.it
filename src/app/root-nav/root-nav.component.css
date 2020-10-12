@@ -34,3 +34,25 @@ a.active {
 .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
+/* nav responsive */
+mat-sidenav-content {
+  margin-left: 0 !important;
+}
+.hidden {
+  display: none;
+}
+.mat-icon-button,
+mat-sidenav {
+  display: none;
+}
+@media only screen and (max-width: 500px) {
+  .nav-menu-link {
+    display: none;
+  }
+  .mat-icon-button {
+    display: inline-block;
+  }
+  mat-sidenav {
+    display: block;
+  }
+}

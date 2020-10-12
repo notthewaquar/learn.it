@@ -15,6 +15,7 @@ import { DashboardComponent } from './teacher/dashboard/dashboard.component';
 import { StudentPerformComponent } from './teacher/student-perform/student-perform.component';
 import { UpcomingTestComponent } from './teacher/upcoming-test/upcoming-test.component';
 import { CreateTestComponent } from './teacher/create-test/create-test.component';
+import { CreateClassComponent } from './teacher/create-class/create-class.component';
 
 // student
 import { StudentComponent } from './student/student.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
     { path: '', component: DashboardComponent },
     { path: 'upcoming-test', component: UpcomingTestComponent },
     { path: 'create-test', component: CreateTestComponent },
-    { path: 'student-performance', component: StudentPerformComponent }
+    { path: 'student-performance', component: StudentPerformComponent },
+    { path: 'create-class', component: CreateClassComponent }
   ] },
   // { path: 'teacher/upcoming-test', component: UpcomingTestComponent},
   // { path: 'teacher/create-test', component: CreateTestComponent},

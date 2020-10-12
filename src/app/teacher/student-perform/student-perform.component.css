@@ -1,3 +1,6 @@
+.w-15 {
+  width: 15%;
+}
 .w-20 {
   width: 20%;
 }
@@ -9,10 +12,11 @@ th {
   position: sticky !important;
   z-index: 100 !important;
 }
-.mat-header-row {
-  background: #6495ed;
+.mat-sort-header-arrow {
+  color: #fff;
 }
 .mat-header-row th {
+  background: #6495ed;
   color: #ffffff;
   font-size: 16px;
   text-shadow: 1px 1px 2px #444;
@@ -20,6 +24,9 @@ th {
 .mat-row:nth-child(odd) {
   background-color: #f4f4f4;
 }
-.my-10 {
-  margin: 10px 0;
+@media only screen and (max-width: 500px) {
+  th {
+    top: 56px !important;
+    font-size: 14px !important;
+  }
 }

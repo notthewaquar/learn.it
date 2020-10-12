@@ -1,4 +1,108 @@
 <form class="example-form">
+  <!-- class and subject -->
+  <mat-card class="row">
+    <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
+      <mat-label>Select Class</mat-label>
+      <mat-select>
+        <mat-option selected disabled>None</mat-option>
+        <mat-option value="9">9</mat-option>
+        <mat-option value="8">8</mat-option>
+        <mat-option value="7">7</mat-option>
+        <mat-option value="6">6</mat-option>
+        <mat-option value="5">5</mat-option>
+        <mat-option value="4">4</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
+      <mat-label>Select Subject</mat-label>
+      <mat-select>
+        <mat-option selected disabled>None</mat-option>
+        <mat-option value="9">Maths</mat-option>
+        <mat-option value="8">Science</mat-option>
+        <mat-option value="7">Hindi</mat-option>
+        <mat-option value="6">Geography</mat-option>
+        <mat-option value="5">History</mat-option>
+        <mat-option value="4">Language</mat-option>
+        <mat-option value="3">Literature</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
+      <mat-label>No of Questions</mat-label>
+      <mat-select>
+        <mat-option selected disabled>--</mat-option>
+        <mat-option value="9">9</mat-option>
+        <mat-option value="8">8</mat-option>
+        <mat-option value="7">7</mat-option>
+        <mat-option value="6">6</mat-option>
+        <mat-option value="5">5</mat-option>
+        <mat-option value="4">4</mat-option>
+        <mat-option value="3">3</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
+      <mat-label>Each Question Mark</mat-label>
+      <mat-select>
+        <mat-option selected disabled>None</mat-option>
+        <mat-option value="9">9</mat-option>
+        <mat-option value="8">8</mat-option>
+        <mat-option value="7">7</mat-option>
+        <mat-option value="6">6</mat-option>
+        <mat-option value="5">5</mat-option>
+        <mat-option value="4">4</mat-option>
+        <mat-option value="3">3</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+  <br>
+  <!-- exam date and time -->
+  <mat-card class="row">
+    <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
+        <!-- <img src="assets/icon/create-white-18dp.svg" alt="analytics" width="25"> -->
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
+      <mat-label>Start Time</mat-label>
+      <input matInput type="time">
+    </mat-form-field>
+    <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
+      <mat-label>End Time</mat-label>
+      <input matInput type="time">
+    </mat-form-field>
+  </mat-card>
+  <!-- show test card -->
+  <button 
+    type="submit"
+    class="add-new-test"
+    mat-raised-button 
+    color="primary"
+    (click)="openDialog()"
+    >
+    <img src="assets/icon/create-white-18dp.svg" alt="analytics" width="25">
+    Add new question
+  </button>
+  
+  <div class="row">
+    
+  </div>
+  <!-- modal for create new question -->
+
+  <!-- modal for edit (optional, try to use create modal) -->
+
+  <!-- delete each test -->
+
+  <!-- submit -->
+  <button 
+    type="submit"
+    mat-raised-button 
+    color="primary">
+    <img src="assets/icon/create-white-18dp.svg" alt="analytics" width="25">
+    Submit
+  </button>
   <mat-form-field class="example-full-width">
     <mat-label>Favorite food</mat-label>
     <input matInput placeholder="Ex. Pizza" value="Sushi">

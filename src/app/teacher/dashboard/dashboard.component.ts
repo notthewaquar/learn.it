@@ -27,4 +27,8 @@ export class DashboardComponent implements OnInit {
   studentPerform() {
     this.router.navigate(['student-performance'], {relativeTo: this.route});
   }
+
+  createClass(){
+    this.router.navigate(['create-class'], {relativeTo: this.route});
+  }
 }

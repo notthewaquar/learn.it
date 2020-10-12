@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
+  select: string;
   authorised = false;
 
   constructor(private router: Router) { }
@@ -18,9 +19,11 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if (this.username === 'admin' && this.password === 'admin'){
-      this.router.navigate(['/teacher']);
-      console.log('hh');
-      this.authorised = true;
+      if (this.select === 'teacher') {
+        this.router.navigate(['/teacher']);
+      } else if (this.select === 'student') {
+        this.router.navigate(['/student']);
+      }
     } else {
         alert('Invalid credentials');
     }

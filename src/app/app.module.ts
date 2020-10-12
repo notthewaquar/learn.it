@@ -30,6 +30,8 @@ import { StudentPerformComponent } from './teacher/student-perform/student-perfo
 import { StudentComponent } from './student/student.component';
 import { UpcomingStudentTestComponent } from './student/upcoming-student-test/upcoming-student-test.component';
 import { GiveTestComponent } from './student/give-test/give-test.component';
+import { CreateClassComponent } from './teacher/create-class/create-class.component';
+import { AddEditTestComponent } from './teacher/create-test/add-edit-test/add-edit-test.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +48,11 @@ import { GiveTestComponent } from './student/give-test/give-test.component';
     StudentPerformComponent,
     RootNavComponent,
     UpcomingStudentTestComponent,
-    GiveTestComponent
+    GiveTestComponent,
+    CreateClassComponent,
+    AddEditTestComponent
   ],
+  entryComponents: [AddEditTestComponent],
   imports: [
     BrowserModule,
     FormsModule,

@@ -20,6 +20,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSortModule} from '@angular/material/sort';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+// MatNativeDateModule, MatMomentDateModule
 
 @NgModule({
   imports: [
@@ -42,7 +46,10 @@ import {MatRadioModule} from '@angular/material/radio';
     MatFormFieldModule,
     MatSelectModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     CommonModule,
@@ -64,7 +71,10 @@ import {MatRadioModule} from '@angular/material/radio';
     MatFormFieldModule,
     MatSelectModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule
    ]
 })
 export class CustomMaterialModule { }

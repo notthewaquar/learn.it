@@ -8,9 +8,9 @@
         <tr>
           <td class="my-10">
             <!-- <mat-form-field class="example-full-width"> -->
-            <mat-radio-group aria-label="Select an option" class="example-full-width">
-              <mat-radio-button value="1">Teacher</mat-radio-button>
-              <mat-radio-button value="2">Student</mat-radio-button>
+            <mat-radio-group aria-label="Select an option" class="example-full-width" [(ngModel)]="select" name="select">
+              <mat-radio-button value="teacher">Teacher</mat-radio-button>
+              <mat-radio-button value="student">Student</mat-radio-button>
             </mat-radio-group>
             <!-- </mat-form-field> -->
           </td>
