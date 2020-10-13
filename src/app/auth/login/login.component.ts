@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   select: string;
-  authorised = false;
+  notAuthorised = false;
 
   constructor(private router: Router) { }
 
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       }
     } else {
         alert('Invalid credentials');
+        this.notAuthorised = true;
     }
   }
 

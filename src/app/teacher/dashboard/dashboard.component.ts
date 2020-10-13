@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  isSpinner = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +22,7 @@ export class DashboardComponent implements OnInit {
   }
 
   createTest() {
+    this.isSpinner = true;
     this.router.navigate(['create-test'], {relativeTo: this.route});
   }
 

@@ -9,14 +9,13 @@ import { AddEditTestComponent } from './add-edit-test/add-edit-test.component';
   styleUrls: ['./create-test.component.css']
 })
 export class CreateTestComponent implements OnInit {
-
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
   }
 
   openDialog() {
-    this.dialog.open(AddEditTestComponent);
+    this.dialog.open(AddEditTestComponent, { disableClose: true });
   }
 
 }

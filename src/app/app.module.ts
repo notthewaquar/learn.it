@@ -32,6 +32,7 @@ import { UpcomingStudentTestComponent } from './student/upcoming-student-test/up
 import { GiveTestComponent } from './student/give-test/give-test.component';
 import { CreateClassComponent } from './teacher/create-class/create-class.component';
 import { AddEditTestComponent } from './teacher/create-test/add-edit-test/add-edit-test.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AddEditTestComponent } from './teacher/create-test/add-edit-test/add-ed
     UpcomingStudentTestComponent,
     GiveTestComponent,
     CreateClassComponent,
-    AddEditTestComponent
+    AddEditTestComponent,
+    LoadingSpinnerComponent
   ],
   entryComponents: [AddEditTestComponent],
   imports: [
