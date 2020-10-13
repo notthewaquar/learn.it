@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // forms
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +33,8 @@ import { GiveTestComponent } from './student/give-test/give-test.component';
 import { CreateClassComponent } from './teacher/create-class/create-class.component';
 import { AddEditTestComponent } from './teacher/create-test/add-edit-test/add-edit-test.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+// services
+import { TestQuestionService } from './shared/service/all-test/test-question.service';
 
 @NgModule({
   declarations: [
@@ -58,11 +60,14 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     CustomMaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    TestQuestionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

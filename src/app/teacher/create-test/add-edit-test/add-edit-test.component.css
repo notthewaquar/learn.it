@@ -1,3 +1,7 @@
 .mat-dialog-content {
   max-height: 90vh;
 }
+.btn-div {
+  display: flex;
+  justify-content: space-between;
+}

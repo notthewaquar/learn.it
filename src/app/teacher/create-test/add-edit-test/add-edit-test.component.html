@@ -1,30 +1,52 @@
 <mat-dialog-content>
-<form>
+<form 
+  [formGroup]="testQuestionForm"
+  (ngSubmit)="onSubmit()">
   <mat-form-field class="w-100">
     <mat-label>Question title</mat-label>
-    <textarea matInput rows="3" placeholder="Please enter your question..."></textarea>
+    <textarea 
+      matInput rows="3" 
+      placeholder="Please enter your question..."
+      formControlName="makeQuestion"></textarea>
   </mat-form-field>
   <!-- <mat-divider></mat-divider> -->
   <mat-form-field class="w-100">
     <mat-label>Option A</mat-label>
-    <input matInput placeholder="Option A">
+    <input 
+      matInput 
+      placeholder="Option A"
+      [ngClass]="{'col-primary': selectAnswer.value === 'A'}"
+      formControlName="makeAns1">
   </mat-form-field>
   <mat-form-field class="w-100">
     <mat-label>Option B</mat-label>
-    <input matInput placeholder="Option A">
+    <input 
+      matInput 
+      placeholder="Option B"
+      [ngClass]="{'col-primary': selectAnswer.value === 'B'}"
+      formControlName="makeAns2">
   </mat-form-field>
   <mat-form-field class="w-100">
     <mat-label>Option C</mat-label>
-    <input matInput placeholder="Option A">
+    <input 
+      matInput 
+      placeholder="Option C"
+      [ngClass]="{'col-primary': selectAnswer.value === 'C'}"
+      formControlName="makeAns3">
   </mat-form-field>
   <mat-form-field class="w-100">
     <mat-label>Option D</mat-label>
-    <input matInput placeholder="Option A">
+    <input 
+      matInput 
+      placeholder="Option D"
+      [ngClass]="{'col-primary': selectAnswer.value === 'D'}"
+      formControlName="makeAns4">
   </mat-form-field>
   <!-- <mat-divider></mat-divider> -->
   <mat-form-field appearance="fill" class="w-100">
     <mat-label>Select correct option</mat-label>
-    <mat-select>
+    <mat-select
+    formControlName="selectAnswer" #selectAnswer>
       <mat-option value="0" selected disabled>Please choose...</mat-option>
       <mat-option value="A">Option A</mat-option>
       <mat-option value="B">Option B</mat-option>
@@ -32,22 +54,24 @@
       <mat-option value="D">Option D</mat-option>
     </mat-select>
   </mat-form-field>
-  <div>
+  <div class="btn-div">
     <button 
       mat-raised-button 
       type="button" 
       style="width: 25%;"
       color="primary"
-      (click)="onSubmit()">Submit</button> | 
-    <button 
+      (click)="onSubmit()">{{editMode ? 'Update' : 'Submit' }}</button>
+    <div>
+      <button 
       mat-raised-button 
       mat-dialog-close
       type="button" 
-      color="primary">Close</button> | 
+      color="primary">Close</button> |
     <button 
       mat-raised-button 
       type="button" 
       color="warn">Reset</button>
+    </div>
   </div>
 </form>  
 </mat-dialog-content>
