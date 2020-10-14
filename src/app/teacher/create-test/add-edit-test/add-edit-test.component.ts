@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
@@ -26,6 +26,7 @@ export class AddEditTestComponent implements OnInit, OnDestroy {
     this.initForm();
     this.editMode = this.testQuestionService.editTestMode;
     this.editedIndex = this.testQuestionService.editTestIndex;
+    console.log(this.editMode);
   }
 
 
@@ -46,12 +47,12 @@ export class AddEditTestComponent implements OnInit, OnDestroy {
       correct = this.testQuestionService.editedTest.correct;
     }
     this.testQuestionForm = new FormGroup({
-      makeQuestion: new FormControl(question),
-      makeAns1: new FormControl(ans1),
-      makeAns2: new FormControl(ans2),
-      makeAns3: new FormControl(ans3),
-      makeAns4: new FormControl(ans4),
-      selectAnswer: new FormControl(correct)
+      makeQuestion: new FormControl(question, Validators.required),
+      makeAns1: new FormControl(ans1, Validators.required),
+      makeAns2: new FormControl(ans2, Validators.required),
+      makeAns3: new FormControl(ans3, Validators.required),
+      makeAns4: new FormControl(ans4, Validators.required),
+      selectAnswer: new FormControl(correct, Validators.required)
     });
   }
 
@@ -82,7 +83,13 @@ export class AddEditTestComponent implements OnInit, OnDestroy {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
+  resetForm() {
+    this.testQuestionForm.reset();
+    this.testQuestionService.editTestMode = false;
+  }
+  closeModal() {
+    this.testQuestionService.editTestMode = false;
+  }
   ngOnDestroy() {
     // this.subscription.unsubscribe();
   }

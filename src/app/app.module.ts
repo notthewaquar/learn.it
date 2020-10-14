@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 // forms
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +34,7 @@ import { AddEditTestComponent } from './teacher/create-test/add-edit-test/add-ed
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 // services
 import { TestQuestionService } from './shared/service/all-test/test-question.service';
+import { DeleteModalComponent } from './shared/modal/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,8 @@ import { TestQuestionService } from './shared/service/all-test/test-question.ser
     GiveTestComponent,
     CreateClassComponent,
     AddEditTestComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    DeleteModalComponent
   ],
   entryComponents: [AddEditTestComponent],
   imports: [

@@ -9,6 +9,9 @@ export class TestQuestionService {
   editTestMode = false;
   editedTest: TestQuestion;
   editTestIndex: number;
+  deleteTestIndex: number;
+  message: string;
+  action = 'Okay!';
 
   private allQuestions: TestQuestion[] = [
     new TestQuestion(
@@ -64,9 +67,13 @@ export class TestQuestionService {
   updateTestQuestion(index: number, editTestQuestion: TestQuestion) {
     this.allQuestions[index] = editTestQuestion;
     this.testQuestionChanged.next(this.allQuestions.slice());
+    this.editTestMode = false;
   }
   deleteTestQuestion(index: number) {
     this.allQuestions.splice(index, 1);
     this.testQuestionChanged.next(this.allQuestions.slice());
+    this.message = 'Test card was deleted successfully';
+    this.editTestMode = false;
   }
+
 }

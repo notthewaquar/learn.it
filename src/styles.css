@@ -25,3 +25,19 @@ mat-label {
 .col-primary {
   color: #3f51b5 !important;
 }
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+.btn-warning {
+  color: #212529;
+  background-color: #ffc107;
+}
+.btn-dark {
+  background-color: #343a40;
+  color: #fff;
+}

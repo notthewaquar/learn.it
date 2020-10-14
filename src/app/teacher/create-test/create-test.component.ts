@@ -5,8 +5,11 @@ import { Subscription } from 'rxjs';
 import { TestQuestion } from 'src/app/shared/model/test-question.model';
 import { TestQuestionService } from 'src/app/shared/service/all-test/test-question.service';
 // modal
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
+
 import { AddEditTestComponent } from './add-edit-test/add-edit-test.component';
+import { DeleteModalComponent } from 'src/app/shared/modal/delete-modal/delete-modal.component';
 
 
 @Component({
@@ -24,7 +27,9 @@ export class CreateTestComponent implements OnInit, OnDestroy {
 
   constructor(
     private testQuestionService: TestQuestionService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    // tslint:disable-next-line: variable-name
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -37,15 +42,25 @@ export class CreateTestComponent implements OnInit, OnDestroy {
     );
   }
 
-  openDialog() {
+  addEditModal() {
     this.dialog.open(AddEditTestComponent, { disableClose: true });
+  }
+
+  deleteModal(index: number) {
+    this.dialog.open(DeleteModalComponent);
+    this.testQuestionService.deleteTestIndex = index;
   }
 
   editEachQuestion(index: number){
     // this.testQuestionService.startedEditing.next(index);
+    this.dialog.open(AddEditTestComponent);
     this.testQuestionService.editTest(index);
   }
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
   ngOnDestroy() {
   //
   }

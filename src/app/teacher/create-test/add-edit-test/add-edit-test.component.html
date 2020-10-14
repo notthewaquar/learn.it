@@ -65,11 +65,13 @@
       <button 
       mat-raised-button 
       mat-dialog-close
+      (click)="closeModal()"
       type="button" 
       color="primary">Close</button> |
     <button 
       mat-raised-button 
-      type="button" 
+      type="button"
+      (click)="resetForm()"
       color="warn">Reset</button>
     </div>
   </div>

@@ -23,7 +23,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-// MatNativeDateModule, MatMomentDateModule
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -49,7 +49,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatRadioModule,
     MatSortModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
@@ -74,7 +75,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatRadioModule,
     MatSortModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
    ]
 })
 export class CustomMaterialModule { }
