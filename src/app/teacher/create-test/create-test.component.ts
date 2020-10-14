@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { TestQuestion } from 'src/app/shared/model/test-question.model';
@@ -20,7 +20,8 @@ import { DeleteModalComponent } from 'src/app/shared/modal/delete-modal/delete-m
 export class CreateTestComponent implements OnInit, OnDestroy {
   id: number;
   allQuestions: TestQuestion[];
-  testQuestionForm: FormGroup;
+  // testQuestionForm: FormGroup;
+  testAllForm: FormGroup;
   private testQuestionSub: Subscription;
   // modal
   panelOpenState = false;
@@ -33,6 +34,7 @@ export class CreateTestComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.initTestForm();
     this.allQuestions = this.testQuestionService.getTestQuestion();
     this.testQuestionSub = this.testQuestionService.testQuestionChanged
       .subscribe(
@@ -40,6 +42,27 @@ export class CreateTestComponent implements OnInit, OnDestroy {
           this.allQuestions = allQuestions;
         }
     );
+  }
+
+  private initTestForm() {
+    this.testAllForm = new FormGroup({
+      classInfo: new FormGroup({
+        selectClass: new FormControl(null, Validators.required),
+        selectSubject: new FormControl(null, Validators.required),
+        noOfQues: new FormControl('1', Validators.required),
+        quesMark: new FormControl('1', Validators.required)
+      }),
+      dateTime: new FormGroup({
+        testDate: new FormControl(null, Validators.required),
+        startTestTime: new FormControl('09:00', Validators.required),
+        endTestTime: new FormControl('10:00', Validators.required)
+      })
+    });
+  }
+
+  onSubmit(){
+    console.log(this.testAllForm.value);
+    console.log(this.testQuestionService.getTestQuestion());
   }
 
   addEditModal() {

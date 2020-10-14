@@ -26,18 +26,27 @@ mat-label {
   color: #3f51b5 !important;
 }
 .btn-secondary {
-  background-color: #6c757d;
-  color: #fff;
+  background-color: #6c757d !important;
+  color: #fff !important;
 }
 .btn-danger {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: #dc3545 !important;
+  color: #fff !important;
 }
 .btn-warning {
-  color: #212529;
-  background-color: #ffc107;
+  color: #212529 !important;
+  background-color: #ffc107 !important;
 }
 .btn-dark {
-  background-color: #343a40;
-  color: #fff;
+  background-color: #343a40 !important;
+  color: #fff !important;
+}
+.btn-success {
+  color: #fff !important;
+  background-color: #28a745 !important;
+}
+.user-select-none {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

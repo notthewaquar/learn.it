@@ -1,9 +1,15 @@
-<form class="example-form">
+<form 
+  class="example-form"
+  [formGroup]="testAllForm"
+  (ngSubmit)="onSubmit()">
   <!-- class and subject -->
-  <mat-card class="row">
+  <mat-card 
+    class="row"
+    formGroupName="classInfo">
     <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
       <mat-label>Select Class</mat-label>
-      <mat-select>
+      <mat-select
+        formControlName="selectClass">
         <mat-option selected disabled>None</mat-option>
         <mat-option value="9">9</mat-option>
         <mat-option value="8">8</mat-option>
@@ -15,7 +21,8 @@
     </mat-form-field>
     <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
       <mat-label>Select Subject</mat-label>
-      <mat-select>
+      <mat-select
+        formControlName="selectSubject">
         <mat-option selected disabled>None</mat-option>
         <mat-option value="9">Maths</mat-option>
         <mat-option value="8">Science</mat-option>
@@ -28,37 +35,46 @@
     </mat-form-field>
     <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
       <mat-label>No of Questions</mat-label>
-      <mat-select>
-        <mat-option selected disabled>--</mat-option>
-        <mat-option value="9">9</mat-option>
-        <mat-option value="8">8</mat-option>
-        <mat-option value="7">7</mat-option>
-        <mat-option value="6">6</mat-option>
-        <mat-option value="5">5</mat-option>
-        <mat-option value="4">4</mat-option>
+      <mat-select
+        formControlName="noOfQues">
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
         <mat-option value="3">3</mat-option>
+        <mat-option value="4">4</mat-option>
+        <mat-option value="5">5</mat-option>
+        <mat-option value="6">6</mat-option>
+        <mat-option value="7">7</mat-option>
+        <mat-option value="8">8</mat-option>
+        <mat-option value="9">9</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
       <mat-label>Each Question Mark</mat-label>
-      <mat-select>
-        <mat-option selected disabled>None</mat-option>
-        <mat-option value="9">9</mat-option>
-        <mat-option value="8">8</mat-option>
-        <mat-option value="7">7</mat-option>
-        <mat-option value="6">6</mat-option>
-        <mat-option value="5">5</mat-option>
-        <mat-option value="4">4</mat-option>
+      <mat-select
+        formControlName="quesMark">
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
         <mat-option value="3">3</mat-option>
+        <mat-option value="4">4</mat-option>
+        <mat-option value="5">5</mat-option>
+        <mat-option value="6">6</mat-option>
+        <mat-option value="7">7</mat-option>
+        <mat-option value="8">8</mat-option>
+        <mat-option value="9">9</mat-option>
       </mat-select>
     </mat-form-field>
   </mat-card>
   <br>
   <!-- exam date and time -->
-  <mat-card class="row">
+  <mat-card 
+    class="row"
+    formGroupName="dateTime">
     <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
       <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker">
+      <input 
+        matInput 
+        [matDatepicker]="picker"
+        formControlName="testDate">
       <mat-datepicker-toggle matSuffix [for]="picker">
         <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
         <!-- <img src="assets/icon/create-white-18dp.svg" alt="analytics" width="25"> -->
@@ -67,16 +83,22 @@
     </mat-form-field>
     <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
       <mat-label>Start Time</mat-label>
-      <input matInput type="time">
+      <input 
+        matInput 
+        type="time"
+        formControlName="startTestTime">
     </mat-form-field>
     <mat-form-field class="col-lg-3 col-md-3 col-6" appearance="fill">
       <mat-label>End Time</mat-label>
-      <input matInput type="time">
+      <input 
+        matInput 
+        type="time"
+        formControlName="endTestTime">
     </mat-form-field>
   </mat-card>
   <!-- show test card -->
   <button 
-    type="submit"
+    type="button"
     class="add-new-test"
     mat-raised-button 
     color="primary"
@@ -84,6 +106,12 @@
     >
     <img src="assets/icon/create-white-18dp.svg" alt="analytics" width="25">
     Add new question
+  </button>
+  <button
+    mat-button
+    class="btn-danger no-test"
+    *ngIf="allQuestions.length < 1">
+    No question is added yet !
   </button>
   <div class="row test-card">
     <div 
@@ -120,7 +148,7 @@
             >
             <svg _ngcontent-kgt-c33="" _ngcontent-riw-c51="" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="" class="svg-inline--fa fa-edit fa-w-18 ng-tns-c33-0"><path _ngcontent-kgt-c33="" _ngcontent-riw-c51="" fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z" class="ng-tns-c33-0"></path></svg>
           </button>
-          |
+          <span class="user-select-none"> | </span>
           <button 
             mat-raised-button 
             color="warn"
@@ -136,12 +164,14 @@
     type="submit"
     class="btn-submit"
     mat-raised-button 
-    color="primary">
+    color="primary"
+    >
+    <!-- [disabled]="" -->
     <img src="assets/icon/create-white-18dp.svg" alt="analytics" width="25">
     Submit
   </button>
   <div 
-    class="no-of-ques"
+    class="no-of-ques user-select-none"
     *ngIf="allQuestions.length > 0">
     {{ allQuestions.length }}
   </div>

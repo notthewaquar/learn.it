@@ -25,6 +25,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {rollNum: 8, name: 'Oxygen', markScored: 15.9994},
   {rollNum: 9, name: 'Fluorine', markScored: 18.9984},
   {rollNum: 10, name: 'Neon', markScored: 20.1797},
+  {rollNum: 11, name: 'Neon', markScored: 20.1797},
+  {rollNum: 12, name: 'Neon', markScored: 20.1797},
+  {rollNum: 13, name: 'Neon', markScored: 20.1797},
+  {rollNum: 14, name: 'Neon', markScored: 20.1797},
+  {rollNum: 15, name: 'Neon', markScored: 20.1797},
+  {rollNum: 16, name: 'Neon', markScored: 20.1797},
+  {rollNum: 17, name: 'Neon', markScored: 20.1797},
+  {rollNum: 18, name: 'Neon', markScored: 20.1797},
+  {rollNum: 19, name: 'Neon', markScored: 20.1797},
+  {rollNum: 20, name: 'Neon', markScored: 20.1797},
 ];
 
 @Component({
