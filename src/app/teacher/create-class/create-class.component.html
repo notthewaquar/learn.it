@@ -1,11 +1,86 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Favorite food</mat-label>
-    <input matInput placeholder="Ex. Pizza" value="Sushi">
+<form 
+  class="example-form add-class"  >
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Select a Class</mat-label>
+    <mat-select>
+      <mat-option value="null">select class</mat-option>
+      <mat-option value="9">9</mat-option>
+      <mat-option value="8">8</mat-option>
+      <mat-option value="7">7</mat-option>
+      <mat-option value="6">6</mat-option>
+      <mat-option value="5">5</mat-option>
+    </mat-select>
   </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Leave a comment</mat-label>
-    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-  </mat-form-field>
+  <mat-card>
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Roll No</th>
+          <th style="width: 35%;">Student Name</th>
+          <th style="width: 35%;">Password</th>
+          <th style="width: 7.5%;">Copy</th>
+          <th style="width: 7.5%;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input 
+              class="form-control" 
+              type="text" 
+              name="rollNo"
+              ngModel></td>
+          <td><input class="form-control" type="text"></td>
+          <td><input class="form-control" type="text"></td>
+          <td><button type="button" class="btn btn-primary">
+            +
+            <!-- <img src="assets/icon/fa-clipboard.svg" alt="Copy to clipboard"> -->
+          </button></td>
+          <td><button type="button" class="btn btn-danger">
+            -
+            <!-- <img src="assets/icon/fa-trash.svg" alt="Add class"> -->
+          </button></td>
+      </tbody>
+    </table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Roll No</th>
+          <th style="width: 35%;">Student Name</th>
+          <th style="width: 35%;">Password</th>
+          <th style="width: 7.5%;">Copy</th>
+          <th style="width: 7.5%;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of allClassList; let i = index">
+          <td><input class="form-control" type="text" [value]="student.rollNo"></td>
+          <td><input class="form-control" type="text" [value]="student.studentName"></td>
+          <td><input class="form-control" type="text" [value]="student.StudentPassword"></td>
+          <td><button type="button" class="btn btn-primary">
+            <img src="assets/icon/fa-clipboard.svg" alt="Copy to clipboard">
+          </button></td>
+          <td><button type="button" class="btn btn-danger">
+            <img src="assets/icon/fa-trash.svg" alt="Add class">
+          </button></td>
+        </tr>
+      </tbody>
+    </table>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      class="add-student">
+      <img src="assets/icon/fa-plus.svg" alt="Add class"> 
+      Add Student
+    </button>
+    <br>
+    <small style="opacity: .7;">Click on copy icon to copy the respective Student's Roll no, Name, Password.</small>
+  </mat-card>
+  <br>
+  <button
+    mat-raised-button
+    color="primary"
+    style="display: block;"
+    type="button">Add CLass</button>
 </form>

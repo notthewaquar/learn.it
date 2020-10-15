@@ -83,6 +83,11 @@ mat-card.row mat-form-field {
   display: block;
   margin: 0 auto 10px;
 }
+mat-calendar div {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 @media only screen and (max-width: 770px) {
 }
 @media only screen and (max-width: 500px) {

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // material module
@@ -35,6 +36,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 // services
 import { TestQuestionService } from './shared/service/all-test/test-question.service';
 import { DeleteModalComponent } from './shared/modal/delete-modal/delete-modal.component';
+import { CLassListService } from './shared/service/class-list/class-list.service';
 
 @NgModule({
   declarations: [
@@ -60,14 +62,16 @@ import { DeleteModalComponent } from './shared/modal/delete-modal/delete-modal.c
   entryComponents: [AddEditTestComponent],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
+    HttpClientModule,
     CustomMaterialModule,
     BrowserAnimationsModule
   ],
   providers: [
-    TestQuestionService
+    TestQuestionService,
+    CLassListService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
 import { TestQuestion } from 'src/app/shared/model/test-question.model';
 import { TestQuestionService } from 'src/app/shared/service/all-test/test-question.service';
 // modal
@@ -25,12 +33,14 @@ export class CreateTestComponent implements OnInit, OnDestroy {
   private testQuestionSub: Subscription;
   // modal
   panelOpenState = false;
+  testDataArr = [];
 
   constructor(
     private testQuestionService: TestQuestionService,
     private dialog: MatDialog,
     // tslint:disable-next-line: variable-name
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -59,10 +69,23 @@ export class CreateTestComponent implements OnInit, OnDestroy {
       })
     });
   }
-
-  onSubmit(){
+  testGroupData() {
+    // this.testDataArr = [
+    //   this.testAllForm.value,
+    //   this.testQuestionService.getTestQuestion()
+    // ];
     console.log(this.testAllForm.value);
     console.log(this.testQuestionService.getTestQuestion());
+    // console.log(this.testDataArr);
+  }
+  onSubmit(){
+    this.testGroupData();
+    // this.http.post<{name: string}>(
+    //   'https://ng-complete-guide-63c17.firebaseio.com/testData.json',
+    //   this.testDataArr
+    // ).subscribe(testRespData => {
+    //   console.log(testRespData);
+    // });
   }
 
   addEditModal() {
