@@ -1,8 +1,10 @@
 <form 
-  class="example-form add-class"  >
+  class="example-form add-class"
+  (ngSubmit)="onSubmit(f)"
+  #f="ngForm">
   <mat-form-field appearance="fill" class="w-100">
     <mat-label>Select a Class</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]="selectClass" name="selectClass" required>
       <mat-option value="null">select class</mat-option>
       <mat-option value="9">9</mat-option>
       <mat-option value="8">8</mat-option>
@@ -23,45 +25,46 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let student of allClassList; let i = index">
           <td>
             <input 
               class="form-control" 
               type="text" 
-              name="rollNo"
-              ngModel></td>
-          <td><input class="form-control" type="text"></td>
-          <td><input class="form-control" type="text"></td>
-          <td><button type="button" class="btn btn-primary">
-            +
-            <!-- <img src="assets/icon/fa-clipboard.svg" alt="Copy to clipboard"> -->
-          </button></td>
-          <td><button type="button" class="btn btn-danger">
-            -
-            <!-- <img src="assets/icon/fa-trash.svg" alt="Add class"> -->
-          </button></td>
-      </tbody>
-    </table>
-    <table class="table">
-      <thead>
-        <tr>
-          <th style="width: 15%;">Roll No</th>
-          <th style="width: 35%;">Student Name</th>
-          <th style="width: 35%;">Password</th>
-          <th style="width: 7.5%;">Copy</th>
-          <th style="width: 7.5%;">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let student of allClassList; let i = index">
-          <td><input class="form-control" type="text" [value]="student.rollNo"></td>
-          <td><input class="form-control" type="text" [value]="student.studentName"></td>
-          <td><input class="form-control" type="text" [value]="student.StudentPassword"></td>
-          <td><button type="button" class="btn btn-primary">
+              name="rollNo{{i}}"
+              [value]="i+1" 
+              required
+              [(ngModel)]="student.rollNo"></td>
+          <td>
+            <input 
+              class="form-control" 
+              type="text" 
+              name="studentName{{i}}"
+              [value]="student.studentName" 
+              required
+              [(ngModel)]="student.studentName"></td>
+          <td>
+            <input 
+              class="form-control" 
+              type="text" 
+              name="studentPassword{{i}}"
+              [value]="student.studentPassword" 
+              required
+              [(ngModel)]="student.studentPassword"></td>
+          <td>
+            <button 
+              type="button" 
+              class="btn btn-primary"
+              (click)="copyInputMessage(i)">
             <img src="assets/icon/fa-clipboard.svg" alt="Copy to clipboard">
           </button></td>
-          <td><button type="button" class="btn btn-danger">
-            <img src="assets/icon/fa-trash.svg" alt="Add class">
+          <td>
+            <button 
+              type="button"
+              class="btn btn-danger"
+              (click)="removeStudent(i)"
+              [ngClass]="{'btn-secondary': allClassList.length===1}"
+              [disabled]="allClassList.length===1">
+            <img src="assets/icon/fa-trash.svg" alt="Remove Student">
           </button></td>
         </tr>
       </tbody>
@@ -70,7 +73,8 @@
       mat-raised-button
       color="primary"
       type="button"
-      class="add-student">
+      class="add-student"
+      (click)="addClassList()">
       <img src="assets/icon/fa-plus.svg" alt="Add class"> 
       Add Student
     </button>
@@ -81,6 +85,7 @@
   <button
     mat-raised-button
     color="primary"
-    style="display: block;"
-    type="button">Add CLass</button>
+    type="submit"
+    [disabled]="!f.valid"
+    style="display: block;">Add Class</button>
 </form>

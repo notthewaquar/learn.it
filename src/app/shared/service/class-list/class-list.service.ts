@@ -1,10 +1,11 @@
-import { Subject } from 'rxjs';
-
 import { ClassList } from '../../model/class-list.model';
 
 export class CLassListService {
-  classListChanged = new Subject<ClassList[]>();
-
+  home = new ClassList(
+    '',
+    '',
+    ''
+  );
   private allClassList: ClassList[] = [
     new ClassList(
       '1',
@@ -25,5 +26,9 @@ export class CLassListService {
   }
   addClassList(classList: ClassList) {
     this.allClassList.push(classList);
+  }
+  addNewField(){
+    this.allClassList.push(this.home);
+    console.log('djfsk');
   }
 }

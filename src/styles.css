@@ -32,11 +32,11 @@ mat-label {
 .btn-primary {
   color: #fff !important;
 }
-.btn-secondary {
-  background-color: #6c757d !important;
-}
 .btn-danger {
   background-color: #dc3545 !important;
+}
+.btn-secondary {
+  background-color: #6c757d !important;
 }
 .btn-warning {
   color: #212529 !important;
