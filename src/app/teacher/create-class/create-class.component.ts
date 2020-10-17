@@ -4,6 +4,7 @@ import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
 
 import { ClassList } from '../../shared/model/class-list.model';
 // import { CLassListService } from 'src/app/shared/service/class-list/class-list.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-class',
@@ -29,6 +30,8 @@ export class CreateClassComponent implements OnInit {
   ];
 
   constructor(
+    // tslint:disable-next-line: variable-name
+    private _snackBar: MatSnackBar,
     private http: HttpClient
   ) { }
 
@@ -43,6 +46,7 @@ export class CreateClassComponent implements OnInit {
   }
   removeStudent(index: number) {
     this.allClassList.splice(index, 1);
+    this.openSnackBar('Student was removed', 'okay');
   }
   // password
   makeid(length) {
@@ -71,6 +75,7 @@ export class CreateClassComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+    this.openSnackBar(name + ' credentials copied !', 'okay');
   }
  onSubmit(form: NgForm){
   //  const link = 'https://ng-complete-guide-63c17.firebaseio.com/classlist/class' + this.selectClass + '.json';
@@ -88,5 +93,10 @@ export class CreateClassComponent implements OnInit {
   const home = new ClassList((this.allClassList.length + 1).toString(), '', (this.makeid(6)).toString());
   this.allClassList.push(home);
   console.log(form.value);
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

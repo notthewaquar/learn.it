@@ -13,12 +13,10 @@ import { HttpClient } from '@angular/common/http';
 import { TestQuestion } from 'src/app/shared/model/test-question.model';
 import { TestQuestionService } from 'src/app/shared/service/all-test/test-question.service';
 // modal
-import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 
 import { AddEditTestComponent } from './add-edit-test/add-edit-test.component';
 import { DeleteModalComponent } from 'src/app/shared/modal/delete-modal/delete-modal.component';
-
 
 @Component({
   selector: 'app-create-test',
@@ -38,8 +36,6 @@ export class CreateTestComponent implements OnInit, OnDestroy {
   constructor(
     private testQuestionService: TestQuestionService,
     private dialog: MatDialog,
-    // tslint:disable-next-line: variable-name
-    private _snackBar: MatSnackBar,
     private http: HttpClient
   ) {}
 
@@ -70,13 +66,11 @@ export class CreateTestComponent implements OnInit, OnDestroy {
     });
   }
   testGroupData() {
-    // this.testDataArr = [
-    //   this.testAllForm.value,
-    //   this.testQuestionService.getTestQuestion()
-    // ];
-    console.log(this.testAllForm.value);
-    console.log(this.testQuestionService.getTestQuestion());
-    // console.log(this.testDataArr);
+    this.testDataArr = [
+      this.testAllForm.value,
+      this.testQuestionService.getTestQuestion()
+    ];
+    console.log(this.testDataArr);
   }
   onSubmit(){
     this.testGroupData();
@@ -86,6 +80,7 @@ export class CreateTestComponent implements OnInit, OnDestroy {
     // ).subscribe(testRespData => {
     //   console.log(testRespData);
     // });
+    this.testQuestionService.openSnackBar('New Test created!', 'okay');
   }
 
   addEditModal() {
@@ -101,11 +96,6 @@ export class CreateTestComponent implements OnInit, OnDestroy {
     // this.testQuestionService.startedEditing.next(index);
     this.dialog.open(AddEditTestComponent);
     this.testQuestionService.editTest(index);
-  }
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
   }
   ngOnDestroy() {
   //

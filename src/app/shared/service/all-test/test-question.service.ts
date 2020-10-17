@@ -1,7 +1,11 @@
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { TestQuestion } from '../../model/test-question.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
+
+@Injectable()
 export class TestQuestionService {
   testQuestionChanged = new Subject<TestQuestion[]>();
   // startedEditing = new Subject<number>();
@@ -10,8 +14,6 @@ export class TestQuestionService {
   editedTest: TestQuestion;
   editTestIndex: number;
   deleteTestIndex: number;
-  message: string;
-  action = 'Okay!';
 
   private allQuestions: TestQuestion[] = [
     new TestQuestion(
@@ -32,6 +34,11 @@ export class TestQuestionService {
     )
   ];
 
+  constructor(
+    // tslint:disable-next-line: variable-name
+    private _snackBar: MatSnackBar
+  ) {}
+
   getTestQuestion() {
     return this.allQuestions.slice();
   }
@@ -43,7 +50,6 @@ export class TestQuestionService {
   addTestQuestion(testQuestion: TestQuestion) {
     this.allQuestions.push(testQuestion);
     this.testQuestionChanged.next(this.allQuestions.slice());
-    console.log(testQuestion);
     if (this.editTestMode) {
       this.editedTest = {
         question: '',
@@ -56,6 +62,7 @@ export class TestQuestionService {
       this.editTestMode = false;
     }
     this.editTestMode = false;
+    this.openSnackBar('Test Card was created', 'okay');
   }
 
   editTest(index: number) {
@@ -68,12 +75,18 @@ export class TestQuestionService {
     this.allQuestions[index] = editTestQuestion;
     this.testQuestionChanged.next(this.allQuestions.slice());
     this.editTestMode = false;
+    this.openSnackBar('Test Card was Updated', 'okay');
   }
   deleteTestQuestion(index: number) {
     this.allQuestions.splice(index, 1);
     this.testQuestionChanged.next(this.allQuestions.slice());
-    this.message = 'Test card was deleted successfully';
     this.editTestMode = false;
+    this.openSnackBar('Test card was deleted!', 'okay');
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }

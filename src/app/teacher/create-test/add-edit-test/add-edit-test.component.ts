@@ -26,7 +26,6 @@ export class AddEditTestComponent implements OnInit, OnDestroy {
     this.initForm();
     this.editMode = this.testQuestionService.editTestMode;
     this.editedIndex = this.testQuestionService.editTestIndex;
-    console.log(this.editMode);
   }
 
 

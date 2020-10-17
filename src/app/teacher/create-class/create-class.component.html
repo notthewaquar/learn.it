@@ -25,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let student of allClassList; let i = index">
+        <tr *ngFor="let student of allClassList; let i = index" [ngModelGroup]="i">
           <td>
             <input 
               class="form-control" 

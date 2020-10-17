@@ -56,3 +56,8 @@ mat-label {
   -ms-user-select: none;
   user-select: none;
 }
+.mat-typography .mat-snack-bar-container {
+  color: #555;
+  font-weight: 700;
+  background: #ffffff;
+}
