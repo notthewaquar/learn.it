@@ -1,0 +1,37 @@
+.error-div,
+mat-card {
+  width: 50%;
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.error-div {
+  width: auto;
+  top: 90px;
+}
+mat-card-header {
+  justify-content: center;
+}
+.example-full-width {
+  width: 100%;
+}
+mat-form-field {
+  width: 90%;
+}
+mat-card-actions {
+  text-align: center;
+}
+mat-radio-group {
+  display: flex;
+}
+mat-radio-button {
+  width: 50%;
+  margin: 20px 0;
+}
+@media only screen and (max-width: 500px) {
+  mat-card {
+    width: 90%;
+  }
+}

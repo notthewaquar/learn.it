@@ -41,7 +41,11 @@ export class CreateClassComponent implements OnInit {
   }
 
   addClassList(){
-    const home = new ClassList((this.allClassList.length + 1).toString(), '', (this.makeid(6)).toString());
+    const home = new ClassList(
+      (this.allClassList.length + 1).toString(),
+      '',
+      (this.passwordGenerator(6)).toString()
+    );
     this.allClassList.push(home);
   }
   removeStudent(index: number) {
@@ -49,7 +53,7 @@ export class CreateClassComponent implements OnInit {
     this.openSnackBar('Student was removed', 'okay');
   }
   // password
-  makeid(length) {
+  passwordGenerator(length) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
@@ -60,22 +64,26 @@ export class CreateClassComponent implements OnInit {
   }
   // copy to clipboard
   copyInputMessage(index: number) {
-    const rollNo = this.allClassList[index].rollNo;
-    const name = this.allClassList[index].studentName;
-    const pass = this.allClassList[index].studentPassword;
-    const textVal = `Roll No: ${rollNo},\nName: ${name},\nPassword: ${pass}`;
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = textVal;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
-    this.openSnackBar(name + ' credentials copied !', 'okay');
+    if (this.allClassList[index].studentName === '') {
+      this.openSnackBar('Please fill name', '');
+    } else {
+      const rollNo = this.allClassList[index].rollNo;
+      const name = this.allClassList[index].studentName;
+      const pass = this.allClassList[index].studentPassword;
+      const textVal = `Roll No: ${rollNo},\nName: ${name},\nPassword: ${pass}`;
+      const selBox = document.createElement('textarea');
+      selBox.style.position = 'fixed';
+      selBox.style.left = '0';
+      selBox.style.top = '0';
+      selBox.style.opacity = '0';
+      selBox.value = textVal;
+      document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      document.execCommand('copy');
+      document.body.removeChild(selBox);
+      this.openSnackBar(name + ' credentials copied !', '');
+    }
   }
  onSubmit(form: NgForm){
   //  const link = 'https://ng-complete-guide-63c17.firebaseio.com/classlist/class' + this.selectClass + '.json';
@@ -88,9 +96,13 @@ export class CreateClassComponent implements OnInit {
   //     error => {
   //       console.log('There was an error' + error);
   //   });
-  this.selectClass = '';
+  form.resetForm();
   this.allClassList = [];
-  const home = new ClassList((this.allClassList.length + 1).toString(), '', (this.makeid(6)).toString());
+  const home = new ClassList(
+    (this.allClassList.length + 1).toString(),
+    '',
+    (this.passwordGenerator(6)).toString()
+  );
   this.allClassList.push(home);
   console.log(form.value);
   }

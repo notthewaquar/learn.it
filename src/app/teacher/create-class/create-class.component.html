@@ -49,21 +49,25 @@
               name="studentPassword{{i}}"
               [value]="student.studentPassword" 
               required
+              disabled="true"
+              style="background-color: #ddd;"
               [(ngModel)]="student.studentPassword"></td>
           <td>
             <button 
               type="button" 
-              class="btn btn-primary"
+              mat-raised-button
+              class="btn-primary"
               (click)="copyInputMessage(i)">
             <img src="assets/icon/fa-clipboard.svg" alt="Copy to clipboard">
           </button></td>
           <td>
             <button 
               type="button"
-              class="btn btn-danger"
+              mat-raised-button
+              class="btn-danger"
               (click)="removeStudent(i)"
-              [ngClass]="{'btn-secondary': allClassList.length===1}"
-              [disabled]="allClassList.length===1">
+              [disabled]="!(i===allClassList.length-1) || i===0"
+              [ngClass]="{'btn-secondary': !(i===allClassList.length-1) || i===0 }">
             <img src="assets/icon/fa-trash.svg" alt="Remove Student">
           </button></td>
         </tr>
@@ -87,5 +91,5 @@
     color="primary"
     type="submit"
     [disabled]="!f.valid"
-    style="display: block;">Add Class</button>
+    class="btn-add-class">Add Class</button>
 </form>

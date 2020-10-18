@@ -123,20 +123,20 @@
         {{ eachQuestion.question }}</h5>
       <!-- <mat-divider></mat-divider> -->
         <p 
-          class="mat-raised-button w-100"
-          [ngClass]="{'mat-primary': eachQuestion.correct === 'A'}">
+          class="mat-r-btn-css w-100"
+          [ngClass]="{'btn-primary btn-tick': eachQuestion.correct === 'A'}">
           <b>A.</b> {{eachQuestion.ans1}}</p>
         <p 
-          class="mat-raised-button w-100"
-          [ngClass]="{'mat-primary': eachQuestion.correct === 'B'}">
+          class="mat-r-btn-css w-100"
+          [ngClass]="{'btn-primary btn-tick': eachQuestion.correct === 'B'}">
           <b>B.</b> {{eachQuestion.ans2}}</p>
         <p 
-          class="mat-raised-button w-100"
-          [ngClass]="{'mat-primary': eachQuestion.correct === 'C'}">
+          class="mat-r-btn-css w-100"
+          [ngClass]="{'btn-primary btn-tick': eachQuestion.correct === 'C'}">
           <b>C.</b> {{eachQuestion.ans3}}</p>
         <p 
-          class="mat-raised-button w-100"
-          [ngClass]="{'mat-primary': eachQuestion.correct === 'D'}">
+          class="mat-r-btn-css w-100"
+          [ngClass]="{'btn-primary btn-tick': eachQuestion.correct === 'D'}">
           <b>D.</b> {{eachQuestion.ans4}}</p>
       <div class="answer-div" style="display: flex; justify-content: space-between;">
         <p>Correct answer: <b>{{eachQuestion.correct}}</b></p>

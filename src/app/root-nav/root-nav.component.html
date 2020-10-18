@@ -17,18 +17,25 @@
         mat-list-item 
         (click)="sidenav.toggle()"
         routerLinkActive="active" 
-        routerLink="/teacher">Teacher</a>
+        routerLink="/teacher"
+        *ngIf="isAuthenticated">Teacher</a>
       <a 
         mat-list-item 
         (click)="sidenav.toggle()"
         routerLinkActive="active" 
-        routerLink="/student">Student</a>
+        routerLink="/student"
+        *ngIf="isAuthenticated">Student</a>
       <mat-divider></mat-divider>
       <a 
         mat-list-item 
         (click)="sidenav.toggle()"
         routerLinkActive="active" 
-        routerLink="/account">Accounts</a>
+        routerLink="/account"
+        *ngIf="!isAuthenticated">Accounts</a>
+      <a 
+        mat-list-item 
+        (click)="sidenav.toggle() ; onLogout()"
+        *ngIf="isAuthenticated">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -44,10 +51,34 @@
       <span routerLink="/home">Learn.it</span>
       <!-- <a >Menu</a> -->
       <div style="margin-left: auto;" class="nav-menu-link">
-        <a mat-stroked-button color="primary" routerLinkActive="active" routerLink="/home">Home</a>
-        <a mat-stroked-button color="primary" routerLinkActive="active" routerLink="/teacher">Teacher</a>
-        <a mat-stroked-button color="primary" routerLinkActive="active" routerLink="/student">Student</a>
-        <a mat-stroked-button color="primary" routerLinkActive="active" routerLink="/account">Account</a>        
+        <a 
+          mat-stroked-button
+          color="primary"
+          routerLinkActive="active"
+          routerLink="/home">Home</a>
+        <a 
+          mat-stroked-button 
+          color="primary" 
+          routerLinkActive="active" 
+          routerLink="/teacher"
+          *ngIf="isAuthenticated">Teacher</a>
+        <a 
+          mat-stroked-button 
+          color="primary" 
+          routerLinkActive="active" 
+          routerLink="/student"
+          *ngIf="isAuthenticated">Student</a>
+        <a 
+          mat-stroked-button 
+          color="primary" 
+          routerLinkActive="active" 
+          routerLink="/account"
+          *ngIf="!isAuthenticated">Account</a>
+        <a 
+          mat-stroked-button 
+          color="primary" 
+          (click)="onLogout()"
+          *ngIf="isAuthenticated">Logout</a>
       </div>
     </mat-toolbar>
     <!-- Add Content Here -->

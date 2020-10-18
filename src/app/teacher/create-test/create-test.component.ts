@@ -59,7 +59,7 @@ export class CreateTestComponent implements OnInit, OnDestroy {
         quesMark: new FormControl('1', Validators.required)
       }),
       dateTime: new FormGroup({
-        testDate: new FormControl(null, Validators.required),
+        testDate: new FormControl(new Date(), Validators.required),
         startTestTime: new FormControl('09:00', Validators.required),
         endTestTime: new FormControl('10:00', Validators.required)
       })
@@ -72,6 +72,7 @@ export class CreateTestComponent implements OnInit, OnDestroy {
     ];
     console.log(this.testDataArr);
   }
+
   onSubmit(){
     this.testGroupData();
     // this.http.post<{name: string}>(

@@ -59,3 +59,6 @@ mat-sidenav {
     display: block;
   }
 }
+/* mat-expansion-panel-header {
+  padding: 0 16px;
+} */

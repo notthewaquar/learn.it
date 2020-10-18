@@ -37,6 +37,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { TestQuestionService } from './shared/service/all-test/test-question.service';
 import { DeleteModalComponent } from './shared/modal/delete-modal/delete-modal.component';
 import { CLassListService } from './shared/service/class-list/class-list.service';
+import { ClassListComponent } from './teacher/class-list/class-list.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CLassListService } from './shared/service/class-list/class-list.service
     CreateClassComponent,
     AddEditTestComponent,
     LoadingSpinnerComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    ClassListComponent
   ],
   entryComponents: [AddEditTestComponent],
   imports: [

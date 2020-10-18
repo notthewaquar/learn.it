@@ -1,2 +1,77 @@
 <!-- <app-sign-up></app-sign-up>-->
-<app-login></app-login>
+<!-- <app-login></app-login> -->
+<div class="auth-card-div">
+  <div class="error-div">
+    <button
+      mat-raised-button
+      class="btn-danger"
+      *ngIf="error">{{ error }}</button>
+  </div>
+<mat-spinner 
+  [style.display]="isLoading ? 'block' : 'none'"
+  *ngIf="isLoading"></mat-spinner>
+<mat-card 
+  class="example-card"
+  *ngIf="!isLoading">
+  <form
+    class="example-form"
+    #authForm="ngForm"
+    (ngSubmit)="onSubmit(authForm)">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td class="my-10">
+              <mat-radio-group 
+                aria-label="Select an option"
+                class="example-full-width"
+                ngModel
+                name="select"
+                [value]="null"
+                required>
+                <mat-radio-button value="teacher">Teacher</mat-radio-button>
+                <mat-radio-button value="student">Student</mat-radio-button>
+              </mat-radio-group>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input 
+                  matInput
+                  placeholder="email"
+                  ngModel
+                  name="email"
+                  required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  placeholder="Password"
+                  ngModel
+                  type="password"
+                  name="password"
+                  required
+                  minlength="6">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+    </mat-card-content>
+    <mat-card-actions>
+      <button 
+        mat-raised-button
+        type="submit"
+        color="primary"
+        [disabled]="!authForm.valid">Login</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+</div>
