@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { AuthGuard } from './auth/auth.guard';
 
 // all
 import { HomePageComponent } from './home-page/home-page.component';
@@ -25,18 +26,22 @@ const routes: Routes = [
   { path: '', component: AuthComponent, pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   { path: 'account', component: AuthComponent },
-  { path: 'teacher', component: TeacherComponent, children: [
-    { path: '', component: DashboardComponent },
-    { path: 'upcoming-test', component: UpcomingTestComponent },
-    { path: 'create-test', component: CreateTestComponent },
-    { path: 'student-performance', component: StudentPerformComponent },
-    { path: 'create-class', component: CreateClassComponent },
-    { path: 'class-list', component: ClassListComponent }
-  ] },
-  // { path: 'teacher/upcoming-test', component: UpcomingTestComponent},
-  // { path: 'teacher/create-test', component: CreateTestComponent},
-  // { path: 'teacher/student-performance', component: StudentPerformComponent},
-  { path: 'student', component: StudentComponent },
+  { path: 'teacher',
+    component: TeacherComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: DashboardComponent },
+      { path: 'upcoming-test', component: UpcomingTestComponent },
+      { path: 'create-test', component: CreateTestComponent },
+      { path: 'student-performance', component: StudentPerformComponent },
+      { path: 'create-class', component: CreateClassComponent },
+      { path: 'class-list', component: ClassListComponent }
+    ]
+  },
+  { path: 'student',
+    component: StudentComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'sign-up', component: SignUpComponent }
   // ,
   // { path: '', redirectTo: '/home', pathMatch: 'full' }

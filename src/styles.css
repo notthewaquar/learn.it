@@ -83,9 +83,9 @@ mat-label {
   user-select: none;
 }
 .mat-typography .mat-snack-bar-container {
-  color: #555;
   font-weight: 700;
-  background: #ffffff;
+  text-shadow: 1px 1px 2px #191919;
+  color: #fff;
 }
 .btn-tick {
   position: relative;
