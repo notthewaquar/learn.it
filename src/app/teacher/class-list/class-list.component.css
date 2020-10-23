@@ -1,0 +1,29 @@
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+mat-expansion-panel {
+  margin-bottom: 5px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table,
+tr,
+th,
+td {
+  border: 1px solid #999;
+}
+tr {
+  height: 30px;
+}
+
+th,
+td {
+  text-align: left;
+  padding-left: 10px;
+}
+th {
+}
+td {
+}

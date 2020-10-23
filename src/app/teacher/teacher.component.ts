@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { Event, Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-teacher',
@@ -6,8 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teacher.component.css']
 })
 export class TeacherComponent implements OnInit {
+  // showLoadingIndicator = true;
 
-  constructor() { }
+  constructor(
+    // private router: Router
+  ) {
+    // this.router.events.subscribe((routerEvent: Event) => {
+    //   if (routerEvent instanceof NavigationStart) {
+    //     this.showLoadingIndicator = true;
+    //   }
+
+    //   if (routerEvent instanceof NavigationEnd) {
+    //     this.showLoadingIndicator = false;
+    //   }
+    // });
+  }
 
   ngOnInit(): void {
   }

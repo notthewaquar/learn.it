@@ -8,17 +8,18 @@ import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-root-nav',
   templateUrl: './root-nav.component.html',
-  styleUrls: ['./root-nav.component.css']
+  styleUrls: ['./root-nav.component.css'],
 })
-export class RootNavComponent implements OnInit, OnDestroy{
+export class RootNavComponent implements OnInit, OnDestroy {
   panelOpenState = false;
   public shouldShow = false;
   private userSub: Subscription;
   isAuthenticated = false;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result) => result.matches),
       shareReplay()
     );
 
@@ -28,7 +29,7 @@ export class RootNavComponent implements OnInit, OnDestroy{
   ) {}
 
   ngOnInit(): void {
-    this.userSub = this.authService.user.subscribe(user => {
+    this.userSub = this.authService.user.subscribe((user) => {
       // this.isAuthenticated = !user ? false : true;
       this.isAuthenticated = !!user;
     });

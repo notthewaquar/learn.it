@@ -1,1 +1,28 @@
-<p>class-list works!</p>
+<mat-accordion>
+  <mat-expansion-panel 
+    (opened)="panelOpenState = true"                   
+    (closed)="panelOpenState = false"
+    *ngFor="let eachClassList of allClassList">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Class: <b>{{eachClassList.classNumber}}</b>
+      </mat-panel-title>
+      <mat-panel-description>
+        Total Student: <b>{{eachClassList.classStudent.length}}</b>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <table>
+      <tr>
+        <th class="w-15">Sl No.</th>
+        <th class="">Student name</th>
+        <th class="">Password</th>
+      </tr>
+    
+      <tr *ngFor="let eachClassstudent of eachClassList.classStudent">
+        <td>{{eachClassstudent.rollNo}}</td>
+        <td>{{eachClassstudent.studentName}}</td>
+        <td>{{eachClassstudent.studentPassword}}</td>
+      </tr>
+    </table>
+  </mat-expansion-panel>
+</mat-accordion>
