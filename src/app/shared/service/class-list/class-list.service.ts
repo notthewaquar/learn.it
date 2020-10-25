@@ -8,6 +8,9 @@ import { AllClassListService } from './all-class-list.service';
 @Injectable()
 export class ClassListService {
   newFieldChanged = new Subject<ClassList[]>();
+  // editMode = false;
+  // editedClassList: ClassList[] = [];
+  // editedClassListIndex: number;
 
   private allClassList: ClassList[] = [
     // new ClassList(
@@ -44,11 +47,16 @@ export class ClassListService {
   addNewCLassList(classNum: string) {
     console.log(classNum);
   }
-  addClassListToAllClassList(classNum: string){
-    const newClass1 = new AllClassList(
-      classNum,
-      this.allClassList
-    );
-    this.allClassListService.addFromClassListToAllClassList(newClass1);
+  // addClassListToAllClassList(classNum: string){
+  //   const newClass1 = new AllClassList(
+  //     classNum,
+  //     this.allClassList
+  //   );
+  //   this.allClassListService.addFromClassListToAllClassList(newClass1);
+  // }
+  addEditingList(editingList: ClassList[]) {
+    this.resetAddClassList();
+    this.allClassList.push(...editingList);
+    this.newFieldChanged.next(this.allClassList.slice());
   }
 }

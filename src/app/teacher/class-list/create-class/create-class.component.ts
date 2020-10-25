@@ -18,6 +18,10 @@ export class CreateClassComponent implements OnInit, OnDestroy {
   @ViewChild('f') classListForm: NgForm;
   // formvalid: FormGroup;
   selectClass = '';
+  editMode = false;
+  editedClassList = [];
+  editedClassListIndex: number;
+  editedClassNum: string;
 
   allClassList: ClassList[];
 
@@ -31,7 +35,16 @@ export class CreateClassComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.allClassList = this.classListService.getClassList();
+    this.editMode = this.allClassListService.editMode;
+    if (!this.editMode) {
+      this.allClassList = this.classListService.getClassList();
+    } else {
+      this.editedClassListIndex = this.allClassListService.editedClassListIndex;
+      this.allClassList = this.allClassListService.editedClassList;
+      this.editedClassNum = this.allClassListService.editedClassNum;
+      this.classListService.addEditingList(this.allClassList);
+      this.selectClass = this.editedClassNum;
+    }
     this.classListService.newFieldChanged
       .subscribe(
         (allClassList: ClassList[]) => {
@@ -65,13 +78,30 @@ export class CreateClassComponent implements OnInit, OnDestroy {
     //   error => {
     //     console.log('There was an error' + error);
     // });
-    this.classListService.addClassListToAllClassList(form.value.selectClass);
+    if (this.editMode) {
+      this.allClassListService.updateAllClassList(
+        this.editedClassListIndex,
+        this.selectClass,
+        this.allClassList
+      );
+      this.openSnackBar('Class was Updated!', '');
+    } else {
+      this.addClassListToAllClassList(form.value.selectClass);
+      this.openSnackBar('New class created!', '');
+    }
     this.classListService.resetAddClassList();
     this.router.navigate(['teacher/class-list']);
   }
+  addClassListToAllClassList(classNum: string){
+    const newClass1 = new AllClassList(
+      classNum,
+      this.allClassList
+    );
+    this.allClassListService.addFromClassListToAllClassList(newClass1);
+  }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-      duration: 2000,
+      duration: 1000,
     });
   }
   // password
@@ -108,6 +138,6 @@ export class CreateClassComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy() {
-    // this.classListService.submittedClassList();
+    //
   }
 }

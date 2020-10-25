@@ -31,7 +31,7 @@
         type="button"
         mat-raised-button
         class="btn-danger"
-        (click)="deleteClassList(i)">Delete CLass</button>
+        (click)="deleteList(i)">Delete CLass</button>
     </div>
     <table>
       <tr>
@@ -48,3 +48,9 @@
     </table>
   </mat-expansion-panel>
 </mat-accordion>
+<br>
+<button
+  type="button"
+  mat-raised-button
+  class="btn-danger"
+  *ngIf="allClassList.length === 0">No class list added yet!</button>

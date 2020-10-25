@@ -4,16 +4,26 @@
   #f="ngForm">
   <mat-form-field appearance="fill" class="w-100">
     <mat-label>Select a Class</mat-label>
-    <mat-select ngModel name="selectClass" required>
+    <mat-select 
+      name="selectClass"
+      required
+      [(ngModel)]="selectClass"
+      >
+      <!-- [disabled]="editMode" -->
       <mat-option 
         value="null"
         selected
-        [disabled]="true">select class</mat-option>
+        disabled>select class</mat-option>
       <mat-option value="9">9</mat-option>
       <mat-option value="8">8</mat-option>
       <mat-option value="7">7</mat-option>
       <mat-option value="6">6</mat-option>
       <mat-option value="5">5</mat-option>
+      <mat-option value="4">4</mat-option>
+      <mat-option value="3">3</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="1">1</mat-option>
+      <mat-option value="0">0</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-card>
@@ -77,6 +87,15 @@
     </table>
     <button
       mat-raised-button
+      class="btn-danger"
+      style="margin-left: auto;margin-right: auto;margin-bottom: 10px;;display: block;"
+      type="button"
+      *ngIf="allClassList.length === 0">
+      <img src="assets/icon/fa-plus.svg" alt="Add class"> 
+      No student added yet!
+    </button>
+    <button
+      mat-raised-button
       color="primary"
       type="button"
       class="add-student"
@@ -93,5 +112,5 @@
     color="primary"
     type="submit"
     [disabled]="!f.valid"
-    class="btn-add-class">Add Class</button>
+    class="btn-add-class">{{editMode ? 'Update' : 'Add'}} Class</button>
 </form>

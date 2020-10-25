@@ -31,11 +31,14 @@ export class ClassListComponent implements OnInit {
   }
   createClass(){
     this.router.navigate(['teacher/create-class']);
+    this.classListService.resetAddClassList();
   }
   editClassList(index: number) {
-    console.log(index + 'edit class');
+    this.allClassListService.addClassListToCreateClass(index);
+    this.createClass();
   }
-  deleteClassList(index: number) {
+  deleteList(index: number) {
     console.log(index + 'delete class');
+    this.allClassListService.removeClassList(index);
   }
 }

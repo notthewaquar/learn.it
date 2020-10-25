@@ -43,3 +43,6 @@ td {
   width: 1px;
   height: 25px;
 }
+mat-expansion-panel-header {
+  user-select: none;
+}
