@@ -25,19 +25,20 @@ import { DashboardComponent } from './teacher/dashboard/dashboard.component';
 import { UpcomingTestComponent } from './teacher/upcoming-test/upcoming-test.component';
 import { CreateTestComponent } from './teacher/create-test/create-test.component';
 import { StudentPerformComponent } from './teacher/student-perform/student-perform.component';
+import { CreateClassComponent } from './teacher/class-list/create-class/create-class.component';
 
 // student
 import { StudentComponent } from './student/student.component';
 import { UpcomingStudentTestComponent } from './student/upcoming-student-test/upcoming-student-test.component';
 import { GiveTestComponent } from './student/give-test/give-test.component';
-import { CreateClassComponent } from './teacher/create-class/create-class.component';
 import { AddEditTestComponent } from './teacher/create-test/add-edit-test/add-edit-test.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 // services
-import { TestQuestionService } from './shared/service/all-test/test-question.service';
 import { DeleteModalComponent } from './shared/modal/delete-modal/delete-modal.component';
-import { CLassListService } from './shared/service/class-list/class-list.service';
+import { TestQuestionService } from './shared/service/all-test/test-question.service';
+import { ClassListService } from './shared/service/class-list/class-list.service';
 import { ClassListComponent } from './teacher/class-list/class-list.component';
+import { AllClassListService } from './shared/service/class-list/all-class-list.service';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { ClassListComponent } from './teacher/class-list/class-list.component';
   ],
   providers: [
     TestQuestionService,
-    CLassListService
+    ClassListService,
+    AllClassListService
   ],
   bootstrap: [AppComponent]
 })

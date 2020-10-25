@@ -16,7 +16,7 @@ import { DashboardComponent } from './teacher/dashboard/dashboard.component';
 import { StudentPerformComponent } from './teacher/student-perform/student-perform.component';
 import { UpcomingTestComponent } from './teacher/upcoming-test/upcoming-test.component';
 import { CreateTestComponent } from './teacher/create-test/create-test.component';
-import { CreateClassComponent } from './teacher/create-class/create-class.component';
+import { CreateClassComponent } from './teacher/class-list/create-class/create-class.component';
 import { ClassListComponent } from './teacher/class-list/class-list.component';
 
 // student

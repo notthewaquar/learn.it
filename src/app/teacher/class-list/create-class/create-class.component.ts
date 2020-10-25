@@ -1,59 +1,81 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
 
-import { ClassList } from '../../shared/model/class-list.model';
-// import { CLassListService } from 'src/app/shared/service/class-list/class-list.service';
+import { ClassListService } from 'src/app/shared/service/class-list/class-list.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AllClassListService } from 'src/app/shared/service/class-list/all-class-list.service';
+import { AllClassList } from 'src/app/shared/model/all-class-list.model';
+import { Router } from '@angular/router';
+import { ClassList } from 'src/app/shared/model/class-list.model';
 
 @Component({
   selector: 'app-create-class',
   templateUrl: './create-class.component.html',
   styleUrls: ['./create-class.component.css']
 })
-export class CreateClassComponent implements OnInit {
+export class CreateClassComponent implements OnInit, OnDestroy {
+  @ViewChild('f') classListForm: NgForm;
   // formvalid: FormGroup;
-  home = new ClassList('', '', '');
   selectClass = '';
 
-  allClassList: ClassList[] = [
-    new ClassList(
-      '1',
-      'Rehan',
-      'rehan123#'
-    ),
-    new ClassList(
-      '2',
-      'Saniya',
-      'sahiya@564'
-    )
-  ];
+  allClassList: ClassList[];
 
   constructor(
+    private classListService: ClassListService,
+    private allClassListService: AllClassListService,
+    private router: Router,
     // tslint:disable-next-line: variable-name
     private _snackBar: MatSnackBar,
     private http: HttpClient
   ) { }
 
   ngOnInit(): void {
-    this.selectClass = null;
-    // this.allClassList = this.classListService.getClassList();
+    this.allClassList = this.classListService.getClassList();
+    this.classListService.newFieldChanged
+      .subscribe(
+        (allClassList: ClassList[]) => {
+          this.allClassList = allClassList;
+        }
+      );
   }
 
-  addClassList(){
+  addNewList(){
     const home = new ClassList(
       (this.allClassList.length + 1).toString(),
       '',
       (this.passwordGenerator(6)).toString()
     );
-    this.allClassList.push(home);
+    this.classListService.addNewField(home);
   }
+
   removeStudent(index: number) {
-    this.allClassList.splice(index, 1);
+    this.classListService.removeClassStudent(index);
     this.openSnackBar('Student was removed', 'okay');
   }
+
+  onSubmit(form: NgForm){
+    // const link = 'https://ng-complete-guide-63c17.firebaseio.com/classlist/class' + this.selectClass + '.json';
+    // this.http.post<{name: string}>(
+    //     link,
+    //     this.classListService.getClassList();
+    //   ).subscribe(classRespData => {
+    //     console.log(classRespData);
+    //   },
+    //   error => {
+    //     console.log('There was an error' + error);
+    // });
+    this.classListService.addClassListToAllClassList(form.value.selectClass);
+    this.classListService.resetAddClassList();
+    this.router.navigate(['teacher/class-list']);
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
   // password
-  passwordGenerator(length) {
+  passwordGenerator(length: number) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
@@ -85,30 +107,7 @@ export class CreateClassComponent implements OnInit {
       this.openSnackBar(name + ' credentials copied !', '');
     }
   }
- onSubmit(form: NgForm){
-  //  const link = 'https://ng-complete-guide-63c17.firebaseio.com/classlist/class' + this.selectClass + '.json';
-  //  this.http.post<{name: string}>(
-  //       link,
-  //       this.allClassList
-  //     ).subscribe(classRespData => {
-  //       console.log(classRespData);
-  //     },
-  //     error => {
-  //       console.log('There was an error' + error);
-  //   });
-  form.resetForm();
-  this.allClassList = [];
-  const home = new ClassList(
-    (this.allClassList.length + 1).toString(),
-    '',
-    (this.passwordGenerator(6)).toString()
-  );
-  this.allClassList.push(home);
-  console.log(form.value);
-  }
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
+  ngOnDestroy() {
+    // this.classListService.submittedClassList();
   }
 }

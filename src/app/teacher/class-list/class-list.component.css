@@ -27,3 +27,19 @@ th {
 }
 td {
 }
+.mat-expansion-panel-header-description {
+  flex-grow: 0;
+}
+.exp-btn-div {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.exp-btn-div span {
+  margin: auto 8px;
+  border-left: 1px solid #b1b1b1;
+  content: "";
+  display: block;
+  width: 1px;
+  height: 25px;
+}

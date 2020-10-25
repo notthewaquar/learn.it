@@ -4,8 +4,11 @@
   #f="ngForm">
   <mat-form-field appearance="fill" class="w-100">
     <mat-label>Select a Class</mat-label>
-    <mat-select [(ngModel)]="selectClass" name="selectClass" required>
-      <mat-option value="null">select class</mat-option>
+    <mat-select ngModel name="selectClass" required>
+      <mat-option 
+        value="null"
+        selected
+        [disabled]="true">select class</mat-option>
       <mat-option value="9">9</mat-option>
       <mat-option value="8">8</mat-option>
       <mat-option value="7">7</mat-option>
@@ -49,7 +52,6 @@
               name="studentPassword{{i}}"
               [value]="student.studentPassword" 
               required
-              disabled="true"
               style="background-color: #ddd;"
               [(ngModel)]="student.studentPassword"></td>
           <td>
@@ -78,7 +80,7 @@
       color="primary"
       type="button"
       class="add-student"
-      (click)="addClassList()">
+      (click)="addNewList()">
       <img src="assets/icon/fa-plus.svg" alt="Add class"> 
       Add Student
     </button>

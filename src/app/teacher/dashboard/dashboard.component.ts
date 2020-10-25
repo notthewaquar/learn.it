@@ -26,9 +26,9 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['create-test'], {relativeTo: this.route});
   }
 
-  createClass(){
-    this.router.navigate(['create-class'], {relativeTo: this.route});
-  }
+  // createClass(){
+  //   this.router.navigate(['create-class'], {relativeTo: this.route});
+  // }
 
   classList() {
     this.router.navigate(['class-list'], {relativeTo: this.route});

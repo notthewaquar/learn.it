@@ -1,16 +1,38 @@
+<button 
+  style="margin-bottom: 10px;"
+  mat-raised-button 
+  color="primary"
+  (click)="createClass()">
+  <img src="assets/icon/create-white-18dp.svg" alt="analytics" width="25">
+  Create New Class
+</button>
 <mat-accordion>
   <mat-expansion-panel 
+    hideToggle
     (opened)="panelOpenState = true"                   
     (closed)="panelOpenState = false"
-    *ngFor="let eachClassList of allClassList">
+    *ngFor="let eachClassList of allClassList, let i = index">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Class: <b>{{eachClassList.classNumber}}</b>
+        <span class="pr-1">Class:</span> <b>{{eachClassList.classNumber}}</b>
       </mat-panel-title>
       <mat-panel-description>
-        Total Student: <b>{{eachClassList.classStudent.length}}</b>
+        <span class="pr-1">Total Student:</span> <b>{{eachClassList.classStudent.length}}</b>
       </mat-panel-description>
     </mat-expansion-panel-header>
+    <div class="exp-btn-div">
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="editClassList(i)">Edit Class</button>
+      <span></span>
+      <button
+        type="button"
+        mat-raised-button
+        class="btn-danger"
+        (click)="deleteClassList(i)">Delete CLass</button>
+    </div>
     <table>
       <tr>
         <th class="w-15">Sl No.</th>

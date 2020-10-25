@@ -39,7 +39,9 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar 
+      color="primary"
+      *ngIf="isAuthenticated">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -60,14 +62,12 @@
           mat-stroked-button 
           color="primary" 
           routerLinkActive="active" 
-          routerLink="/teacher"
-          *ngIf="isAuthenticated">Teacher</a>
+          routerLink="/teacher">Teacher</a>
         <a 
           mat-stroked-button 
           color="primary" 
           routerLinkActive="active" 
-          routerLink="/student"
-          *ngIf="isAuthenticated">Student</a>
+          routerLink="/student">Student</a>
         <a 
           mat-stroked-button 
           color="primary" 
@@ -77,8 +77,7 @@
         <a 
           mat-stroked-button 
           color="primary" 
-          (click)="onLogout()"
-          *ngIf="isAuthenticated">Logout</a>
+          (click)="onLogout()">Logout</a>
       </div>
     </mat-toolbar>
     <!-- Add Content Here -->
