@@ -21,6 +21,7 @@ import { ClassListComponent } from './teacher/class-list/class-list.component';
 
 // student
 import { StudentComponent } from './student/student.component';
+import { PreviewTestComponent } from './teacher/upcoming-test/preview-test/preview-test.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent, pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'upcoming-test', component: UpcomingTestComponent },
+      { path: 'preview-test', component: PreviewTestComponent },
       { path: 'create-test', component: CreateTestComponent },
       { path: 'student-performance', component: StudentPerformComponent },
       { path: 'create-class', component: CreateClassComponent },

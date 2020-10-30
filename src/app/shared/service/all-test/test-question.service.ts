@@ -14,6 +14,7 @@ export class TestQuestionService {
   editedTest: TestQuestion;
   editTestIndex: number;
   deleteTestIndex: number;
+  deleteTestMode: boolean;
 
   private allQuestions: TestQuestion[] = [
     new TestQuestion(
@@ -62,7 +63,7 @@ export class TestQuestionService {
       this.editTestMode = false;
     }
     this.editTestMode = false;
-    this.openSnackBar('Test Card was created', 'okay');
+    this.openSnackBar('Test Card was Created', 'okay');
   }
 
   editTest(index: number) {
@@ -80,8 +81,8 @@ export class TestQuestionService {
   deleteTestQuestion(index: number) {
     this.allQuestions.splice(index, 1);
     this.testQuestionChanged.next(this.allQuestions.slice());
-    this.editTestMode = false;
-    this.openSnackBar('Test card was deleted!', 'okay');
+    this.deleteTestMode = false;
+    this.openSnackBar('Test card was Deleted!', 'okay');
   }
 
   openSnackBar(message: string, action: string) {

@@ -1,12 +1,31 @@
 mat-card {
-  display: flex;
-  background: #3f51b5;
-  color: #fff;
+  color: #3f51b5;
   font-size: 15px;
   font-weight: 600;
   font-family: sans-serif;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
-mat-card div {
-  width: 50%;
+.card-info-div {
+  display: flex;
+  justify-content: space-between;
 }
+/* mat-card div {
+} */
+.card-btn-div {
+  /* display: flex;
+  justify-content: flex-end; */
+  display: block;
+}
+.card-btn-div button {
+  display: block;
+}
+/* .card-btn-div span {
+  margin: auto 8px;
+  border-top: 1px solid #b1b1b1;
+  content: "";
+  display: block;
+  width: 1px;
+  height: 1px;
+} */

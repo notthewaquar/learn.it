@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+
 import { AllClassList } from 'src/app/shared/model/all-class-list.model';
 import { AllClassListService } from 'src/app/shared/service/class-list/all-class-list.service';
 import { ClassListService } from 'src/app/shared/service/class-list/class-list.service';
+import { DeleteModalComponent } from 'src/app/shared/modal/delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-class-list',
@@ -16,12 +19,12 @@ export class ClassListComponent implements OnInit {
   constructor(
     private allClassListService: AllClassListService,
     private classListService: ClassListService,
+    private dialog: MatDialog,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.allClassList = this.allClassListService.getAllClassList();
-    console.log(this.allClassListService.getAllClassList());
     this.allClassListService.newAllClassChanged
       .subscribe(
         (allClassList: AllClassList[]) => {
@@ -37,8 +40,9 @@ export class ClassListComponent implements OnInit {
     this.allClassListService.addClassListToCreateClass(index);
     this.createClass();
   }
-  deleteList(index: number) {
-    console.log(index + 'delete class');
-    this.allClassListService.removeClassList(index);
+  deleteModal(index: number) {
+    this.dialog.open(DeleteModalComponent);
+    this.allClassListService.deleteTestIndex = index;
+    this.allClassListService.deleteClassMode = true;
   }
 }

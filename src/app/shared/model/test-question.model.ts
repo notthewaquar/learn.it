@@ -6,5 +6,6 @@ export class TestQuestion {
     public ans2: string,
     public ans3: string,
     public ans4: string,
-    public correct: string) {}
+    public correct: string
+  ) {}
 }

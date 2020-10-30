@@ -172,6 +172,11 @@
     <img src="assets/icon/create-white-18dp.svg" alt="analytics" width="25">
     Submit
   </button>
+  <button
+  type="button"
+    mat-raised-button
+    class="btn-success"
+    (click)="addTestInfo()">Get Info</button>
   <div 
     class="no-of-ques user-select-none"
     *ngIf="allQuestions.length > 0">

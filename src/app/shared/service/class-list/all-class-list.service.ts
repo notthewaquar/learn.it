@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AllClassList } from '../../model/all-class-list.model';
 import { ClassList } from '../../model/class-list.model';
@@ -12,6 +13,8 @@ export class AllClassListService {
   editedClassList: ClassList[] = [];
   editedClassListIndex: number;
   editedClassNum: string;
+  deleteTestIndex: number;
+  deleteClassMode: boolean;
 
   private allClassList: AllClassList[] = [
     new AllClassList(
@@ -46,7 +49,8 @@ export class AllClassListService {
     ),
   ];
   constructor(
-    // private classListService: ClassListService
+    // tslint:disable-next-line: variable-name
+    private _snackBar: MatSnackBar
   ) {}
 
   getAllClassList(){
@@ -55,7 +59,7 @@ export class AllClassListService {
   addFromClassListToAllClassList(newClass1: AllClassList) {
     this.allClassList.push(newClass1);
     this.newAllClassChanged.next(this.allClassList.slice());
-    console.log('passed data');
+    this.openSnackBar('Class list was Added!', 'okay');
   }
   addClassListToCreateClass(index: number) {
     this.editMode = true;
@@ -67,9 +71,17 @@ export class AllClassListService {
     this.allClassList[index].classStudent = newClassList;
     this.allClassList[index].classNumber = newClassNum;
     this.newAllClassChanged.next(this.allClassList.slice());
+    this.openSnackBar('Class list was Updated!', 'okay');
   }
   removeClassList(index: number) {
     this.allClassList.splice(index, 1);
+    this.deleteClassMode = false;
     this.newAllClassChanged.next(this.allClassList.slice());
+    this.openSnackBar('Class list was Deleted!', 'okay');
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

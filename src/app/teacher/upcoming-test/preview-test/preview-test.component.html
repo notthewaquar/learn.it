@@ -1,0 +1,41 @@
+<button
+  mat-raised-button
+  type="button"
+  style="display: block;"
+  class="btn-danger"
+  *ngIf="!previewMode">No Test Card selected!</button>
+<div 
+  *ngIf="previewMode">
+  <mat-card>
+    Class: {{testInfoList.selectClass}}
+    subject: {{testInfoList.subject}}
+    No of Ques: {{testInfoList.noOfQues}}
+    Each Ques Marks: {{testInfoList.eachQuesMark}}
+  </mat-card>
+  <mat-card>
+    Exam Date: {{testInfoList.examDate | date}}
+    Full Marks: {{testInfoList.noOfQues * testInfoList.eachQuesMark}}
+    Start Time: {{testInfoList.startTime}}
+    End Time: {{testInfoList.endTime}}
+  </mat-card>
+  <!-- test cards -->
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-12"
+      *ngFor="let testCard of testInfoList.testQuestion; let i = index">
+      <mat-card>
+        <h4>Q{{i+1}}. {{testCard.question}}</h4>
+        <p>A. {{testCard.ans1}}</p>
+        <p>B. {{testCard.ans2}}</p>
+        <p>C. {{testCard.ans3}}</p>
+        <p>D. {{testCard.ans4}}</p>
+        <b>Correct answer: {{testCard.correct}}</b>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<br>
+<button
+  mat-raised-button
+  color="primary"
+  type="button"
+  (click)="goBack()">Go Back</button>

@@ -17,6 +17,9 @@ import {MatDialog} from '@angular/material/dialog';
 
 import { AddEditTestComponent } from './add-edit-test/add-edit-test.component';
 import { DeleteModalComponent } from 'src/app/shared/modal/delete-modal/delete-modal.component';
+import { TestInfoService } from 'src/app/shared/service/all-test/test-info.service';
+import { TestInfoList } from 'src/app/shared/model/test-info.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-test',
@@ -35,7 +38,9 @@ export class CreateTestComponent implements OnInit, OnDestroy {
 
   constructor(
     private testQuestionService: TestQuestionService,
+    private testInfoService: TestInfoService,
     private dialog: MatDialog,
+    private router: Router,
     private http: HttpClient
   ) {}
 
@@ -74,13 +79,27 @@ export class CreateTestComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(){
-    this.testGroupData();
+    // this.testGroupData();
     // this.http.post<{name: string}>(
     //   'https://ng-complete-guide-63c17.firebaseio.com/testData.json',
     //   this.testDataArr
     // ).subscribe(testRespData => {
     //   console.log(testRespData);
     // });
+    const newData = new TestInfoList(
+      this.testAllForm.value.classInfo.selectClass,
+      this.testAllForm.value.classInfo.selectSubject,
+      this.testAllForm.value.classInfo.noOfQues,
+      this.testAllForm.value.classInfo.quesMark,
+      this.testAllForm.value.dateTime.testDate,
+      this.testAllForm.value.dateTime.startTestTime,
+      this.testAllForm.value.dateTime.endTestTime,
+      this.allQuestions
+    );
+    console.log(newData);
+    this.testInfoService.addTestQuestion(newData);
+    this.router.navigate(['teacher/upcoming-test']);
+
     this.testQuestionService.openSnackBar('New Test created!', 'okay');
   }
 
@@ -91,12 +110,16 @@ export class CreateTestComponent implements OnInit, OnDestroy {
   deleteModal(index: number) {
     this.dialog.open(DeleteModalComponent);
     this.testQuestionService.deleteTestIndex = index;
+    this.testQuestionService.deleteTestMode = true;
   }
 
   editEachQuestion(index: number){
     // this.testQuestionService.startedEditing.next(index);
     this.dialog.open(AddEditTestComponent);
     this.testQuestionService.editTest(index);
+  }
+  addTestInfo() {
+    //
   }
   ngOnDestroy() {
   //

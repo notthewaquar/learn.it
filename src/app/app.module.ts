@@ -36,9 +36,11 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 // services
 import { DeleteModalComponent } from './shared/modal/delete-modal/delete-modal.component';
 import { TestQuestionService } from './shared/service/all-test/test-question.service';
+import { TestInfoService } from './shared/service/all-test/test-info.service';
 import { ClassListService } from './shared/service/class-list/class-list.service';
 import { ClassListComponent } from './teacher/class-list/class-list.component';
 import { AllClassListService } from './shared/service/class-list/all-class-list.service';
+import { PreviewTestComponent } from './teacher/upcoming-test/preview-test/preview-test.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { AllClassListService } from './shared/service/class-list/all-class-list.
     AddEditTestComponent,
     LoadingSpinnerComponent,
     DeleteModalComponent,
-    ClassListComponent
+    ClassListComponent,
+    PreviewTestComponent
   ],
   entryComponents: [AddEditTestComponent],
   imports: [
@@ -74,6 +77,7 @@ import { AllClassListService } from './shared/service/class-list/all-class-list.
   ],
   providers: [
     TestQuestionService,
+    TestInfoService,
     ClassListService,
     AllClassListService
   ],
