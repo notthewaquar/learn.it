@@ -1,2 +1,10 @@
-<app-upcoming-student-test></app-upcoming-student-test>
-<app-give-test></app-give-test>
+<button
+  type="button"
+  mat-raised-button
+  color="primary"
+  (click)="gotoStudent()">
+    <img src="assets/icon/account_circle-white-18dp.svg" alt="analytics" width="25">
+    Student Panel
+  </button>
+<mat-divider></mat-divider>
+<router-outlet></router-outlet>

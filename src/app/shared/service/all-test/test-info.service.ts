@@ -1,11 +1,15 @@
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { TestInfoList } from '../../model/test-info.model';
 import { TestQuestion } from '../../model/test-question.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
+@Injectable()
 export class TestInfoService {
   testInfoListChanged = new Subject<TestInfoList[]>();
   previewIndex: number = null;
+  giveTestIndex: number = null;
   deleteEachTestInfoIndex: number;
   deleteEachTestInfoMode: boolean;
 
@@ -27,9 +31,29 @@ export class TestInfoService {
           'Mumbai' ,
           'C'
         ),
+        new TestQuestion(
+          'Where does the sun rise?',
+          'east',
+          'west',
+          'south',
+          'north' ,
+          'A'
+        ),
+        new TestQuestion(
+          'Best anime series?',
+          'One Punch man',
+          'FMA',
+          'Naruto',
+          'Bleach' ,
+          'B'
+        ),
       ]
     )
   ];
+  constructor(
+    // tslint:disable-next-line: variable-name
+    private _snackBar: MatSnackBar
+  ) {}
   getAllTestInfoList(){
     return this.testInfoList.slice();
   }
@@ -43,5 +67,11 @@ export class TestInfoService {
   deleteEachTestInfoList(index: number){
     this.testInfoList.splice(index, 1);
     this.testInfoListChanged.next(this.testInfoList.slice());
+    this.openSnackBar('Test card was Deleted!', 'okay');
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

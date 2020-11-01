@@ -1,3 +1,8 @@
+<button
+  *ngIf="testInfoList.length <= 0"
+  type="button"
+  mat-raised-button
+  class="btn-danger">No Upcoming test found!</button>
 <mat-card
   *ngFor="let eachTestInfoList of testInfoList, let i = index">
   <!-- <div class="card-info-div"> -->
@@ -30,6 +35,7 @@
       </button>
     <!-- <span></span> -->
     <button
+      style="margin-top: 10px;"
       type="button"
       mat-raised-button
       class="btn-danger"

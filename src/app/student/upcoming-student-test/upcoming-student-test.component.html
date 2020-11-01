@@ -1,48 +1,30 @@
-<mat-card>
-  <div>
-    Class: 6
-    <br>
-    No of Ques: 20
-    <br>
-    Start Time: 09:00 AM
-  </div>
-  <div>
-    Subject: History
-    <br>
-    Full Marks: 20
-    <br>
-    End Time: 10:00 AM
-  </div>
-</mat-card>
-<mat-card>
-  <div>
-    Class: 6
-    <br>
-    No of Ques: 20
-    <br>
-    Start Time: 09:00 AM
-  </div>
-  <div>
-    Subject: History
-    <br>
-    Full Marks: 20
-    <br>
-    End Time: 10:00 AM
-  </div>
-</mat-card>
-<mat-card>
-  <div>
-    Class: 6
-    <br>
-    No of Ques: 20
-    <br>
-    Start Time: 09:00 AM
-  </div>
-  <div>
-    Subject: History
-    <br>
-    Full Marks: 20
-    <br>
-    End Time: 10:00 AM
-  </div>
+<button
+  *ngIf="testInfoList.length <= 0"
+  type="button"
+  mat-raised-button
+  class="btn-danger">No Upcoming test found!</button>
+<mat-card
+  *ngFor="let eachTestInfoList of testInfoList, let i = index"
+  (click)="viewTestInfo(i)"
+  style="cursor: pointer;">
+  <!-- <div class="card-info-div"> -->
+    <div>
+      Class: {{eachTestInfoList.selectClass}}
+      <br>
+      subject: {{eachTestInfoList.subject}}
+      <br>
+      No of Ques: {{eachTestInfoList.noOfQues}}
+      <br>
+      Each Ques Marks: {{eachTestInfoList.eachQuesMark}}
+    </div>
+    <div>
+      Exam Date: {{eachTestInfoList.examDate | date}}
+      <br>
+      Full Marks: {{eachTestInfoList.noOfQues * eachTestInfoList.eachQuesMark}}
+      <br>
+      Start Time: {{eachTestInfoList.startTime}}
+      <br>
+      End Time: {{eachTestInfoList.endTime}}
+    </div>
+  <!-- </div> -->
 </mat-card>

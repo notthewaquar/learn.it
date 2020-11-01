@@ -22,6 +22,9 @@ import { ClassListComponent } from './teacher/class-list/class-list.component';
 // student
 import { StudentComponent } from './student/student.component';
 import { PreviewTestComponent } from './teacher/upcoming-test/preview-test/preview-test.component';
+import { GiveTestComponent } from './student/give-test/give-test.component';
+import { UpcomingStudentTestComponent } from './student/upcoming-student-test/upcoming-student-test.component';
+import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent, pathMatch: 'full' },
@@ -43,6 +46,11 @@ const routes: Routes = [
   { path: 'student',
     component: StudentComponent,
     canActivate: [AuthGuard],
+    children: [
+      { path: '', component: StudentDashboardComponent },
+      { path: 'upcoming-test', component: UpcomingStudentTestComponent },
+      { path: 'give-test', component: GiveTestComponent }
+    ]
   },
   { path: 'sign-up', component: SignUpComponent }
   // ,

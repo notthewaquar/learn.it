@@ -1,11 +1,112 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Favorite food</mat-label>
-    <input matInput placeholder="Ex. Pizza" value="Sushi">
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Leave a comment</mat-label>
-    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-  </mat-form-field>
-</form>
+<button
+  mat-raised-button
+  type="button"
+  style="display: block;"
+  class="btn-danger"
+  *ngIf="!giveTestMode">No Test Card selected!</button>
+<div 
+  *ngIf="giveTestMode">
+  <mat-card class="top-info">
+    <button type="button" mat-raised-button color="primary">Class: {{testInfoList.selectClass}}</button>
+    <button type="button" mat-raised-button color="primary">subject: {{testInfoList.subject}}</button>
+    <button type="button" mat-raised-button color="primary">No of Ques: {{testInfoList.noOfQues}}</button>
+    <button type="button" mat-raised-button color="primary">Each Ques Marks: {{testInfoList.eachQuesMark}}</button>
+  <!-- </mat-card>
+  <mat-card class="top-info"> -->
+    <button type="button" mat-raised-button color="primary">Exam Date: {{testInfoList.examDate | date}}</button>
+    <button type="button" mat-raised-button color="primary">Full Marks: {{testInfoList.noOfQues * testInfoList.eachQuesMark}}</button>
+    <button type="button" mat-raised-button color="primary">Start Time: {{testInfoList.startTime}}</button>
+    <button type="button" mat-raised-button color="primary">End Time: {{testInfoList.endTime}}</button>
+  </mat-card>
+  <!-- test cards -->
+  <form
+    [formGroup]="previewForm"
+    (ngSubmit)="onSubmit()">
+  <div class="eachTestCard-div" formArrayName="eachTestCard">
+    <div class=""
+      *ngFor="let testCard of testInfoList.testQuestion; let i = index">
+      <mat-card [formGroupName]="i" *ngIf="i === slideIndex">
+        <h4>Q{{i+1}}. {{testCard.question}}</h4>
+        <input 
+            type="checkbox" 
+            id="a{{i}}" 
+            class="radio-hide"
+            name="ansA"
+            formControlName="ansA"
+            value="A"
+            (click)="radioClickA(i)"
+            #selectedAnswer>
+            <label 
+            mat-raised-button
+            for="a{{i}}"
+            class="mat-r-btn-css">
+            <b>A.</b> {{testCard.ans1}}</label>
+          <input 
+            type="checkbox" 
+            id="b{{i}}" 
+            class="radio-hide" 
+            name="ansB"
+            formControlName="ansB"
+            value="B"
+            (click)="radioClickB(i)"
+            #selectedAnswer>
+          <label 
+            for="b{{i}}"
+            class="mat-r-btn-css">
+            <b>B.</b> {{testCard.ans2}}</label>
+          <input 
+            type="checkbox" 
+            id="c{{i}}" 
+            class="radio-hide" 
+            name="ansC"
+            formControlName="ansC"
+            value="C"
+            (click)="radioClickC(i)"
+            #selectedAnswer>
+          <label 
+            for="c{{i}}"
+            class="mat-r-btn-css">
+            <b>C.</b> {{testCard.ans3}}</label>
+          <input 
+            type="checkbox" 
+            id="d{{i}}" 
+            class="radio-hide" 
+            name="ansD"
+            formControlName="ansD"
+            value="D"
+            (click)="radioClickD(i)"
+            #selectedAnswer>
+          <label 
+            for="d{{i}}"
+            class="mat-r-btn-css">
+            <b>D.</b> {{testCard.ans4}}</label>
+        <!-- <p>A. {{testCard.ans1}}</p>
+        <p>B. {{testCard.ans2}}</p>
+        <p>C. {{testCard.ans3}}</p>
+        <p>D. {{testCard.ans4}}</p>
+        <b>Correct answer: {{testCard.correct}}</b> -->
+      </mat-card>
+    </div>
+  </div>
+  <div class="slider-div">
+    <button
+      (click)="prevSlide()"
+      type="button"
+      mat-raised-button
+      color="primary"
+      [disabled]="disablePrev">Prev</button>
+    <span> | </span>
+    <button
+      (click)="nextSlide()"
+      type="button"
+      mat-raised-button
+      color="primary"
+      [disabled]="disableNext">Next</button>
+  </div>
+  <button
+  class="btn-submit"
+    type="submit"
+    mat-raised-button
+    color="primary">Submit Test</button>
+  </form>
+</div>

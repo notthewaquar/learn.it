@@ -82,6 +82,7 @@ mat-label {
   -ms-user-select: none;
   user-select: none;
 }
+.mat-typography .mat-simple-snackbar .mat-button-wrapper,
 .mat-typography .mat-snack-bar-container {
   font-weight: 500;
   text-shadow: 1px 1px 2px #111111;

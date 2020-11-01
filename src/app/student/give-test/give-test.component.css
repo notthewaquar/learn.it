@@ -1,9 +1,65 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+mat-card {
+  margin-bottom: 10px;
 }
-
-.example-full-width {
-  width: 100%;
+.row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.row > div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+* {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.top-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 5px;
+}
+.top-info > button {
+  width: 24%;
+  margin: 0 0% 10px;
+}
+h4 {
+  font-weight: 700;
+  font-size: 18px;
+}
+.radio-hide {
+  position: fixed;
+  top: -999999999999px;
+  left: -999999999999px;
+  opacity: 0;
+  visibility: hidden;
+}
+.eachTestCard-div {
+  max-width: 500px;
+  margin: auto;
+}
+label {
+  display: block !important;
+}
+label.btn-light {
+  /* color: #111 !important;
+  background-color: #f4f4f4 !important; */
+}
+.radio-hide:checked + label {
+  color: #fff !important;
+  background-color: #28a745 !important;
+}
+.slider-div {
+  /* display: flex;
+  justify-content: center; */
+  text-align: center;
+  margin: 0 auto 10px;
+}
+.slider-div button {
+  width: 20%;
+}
+.btn-submit {
+  display: block;
+  margin: 0 auto;
 }

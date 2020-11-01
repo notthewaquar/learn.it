@@ -31,6 +31,7 @@ import { CreateClassComponent } from './teacher/class-list/create-class/create-c
 import { StudentComponent } from './student/student.component';
 import { UpcomingStudentTestComponent } from './student/upcoming-student-test/upcoming-student-test.component';
 import { GiveTestComponent } from './student/give-test/give-test.component';
+import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { AddEditTestComponent } from './teacher/create-test/add-edit-test/add-edit-test.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 // services
@@ -63,7 +64,8 @@ import { PreviewTestComponent } from './teacher/upcoming-test/preview-test/previ
     LoadingSpinnerComponent,
     DeleteModalComponent,
     ClassListComponent,
-    PreviewTestComponent
+    PreviewTestComponent,
+    StudentDashboardComponent
   ],
   entryComponents: [AddEditTestComponent],
   imports: [
