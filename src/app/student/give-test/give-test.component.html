@@ -19,15 +19,27 @@
     <button type="button" mat-raised-button color="primary">End Time: {{testInfoList.endTime}}</button>
   </mat-card>
   <!-- test cards -->
+  <p>Attempted: 
+    <mat-progress-bar 
+      mode="determinate" 
+      [value]="attemptedQuesCount"></mat-progress-bar>
+  </p>
+  <p>
+    Time left: 
+    <mat-progress-bar 
+      mode="determinate" 
+      [value]="testTimerCount"
+      color="{{progressColorPercent}}"></mat-progress-bar>
+  </p>
   <form
     [formGroup]="previewForm"
     (ngSubmit)="onSubmit()">
-  <div class="eachTestCard-div" formArrayName="eachTestCard">
-    <div class=""
-      *ngFor="let testCard of testInfoList.testQuestion; let i = index">
-      <mat-card [formGroupName]="i" *ngIf="i === slideIndex">
-        <h4>Q{{i+1}}. {{testCard.question}}</h4>
-        <input 
+    <div class="eachTestCard-div" formArrayName="eachTestCard">
+      <div class=""
+        *ngFor="let testCard of testInfoList.testQuestion; let i = index">
+        <mat-card [formGroupName]="i" *ngIf="i === slideIndex">
+          <h4>Q{{i+1}}. {{testCard.question}}</h4>
+          <input 
             type="checkbox" 
             id="a{{i}}" 
             class="radio-hide"
@@ -80,33 +92,45 @@
             for="d{{i}}"
             class="mat-r-btn-css">
             <b>D.</b> {{testCard.ans4}}</label>
-        <!-- <p>A. {{testCard.ans1}}</p>
-        <p>B. {{testCard.ans2}}</p>
-        <p>C. {{testCard.ans3}}</p>
-        <p>D. {{testCard.ans4}}</p>
-        <b>Correct answer: {{testCard.correct}}</b> -->
-      </mat-card>
+          <!-- <p>A. {{testCard.ans1}}</p>
+          <p>B. {{testCard.ans2}}</p>
+          <p>C. {{testCard.ans3}}</p>
+          <p>D. {{testCard.ans4}}</p>
+          <b>Correct answer: {{testCard.correct}}</b> -->
+        </mat-card>
+      </div>
     </div>
-  </div>
-  <div class="slider-div">
+    <div class="slider-div">
+      <button
+        (click)="prevSlide()"
+        type="button"
+        mat-raised-button
+        color="primary"
+        [disabled]="disablePrev">Prev</button>
+      <span> | </span>
+      <button
+        (click)="nextSlide()"
+        type="button"
+        mat-raised-button
+        color="primary"
+        [disabled]="disableNext">Next</button>
+    </div>
     <button
-      (click)="prevSlide()"
+      class="btn-submit"
       type="button"
       mat-raised-button
-      color="primary"
-      [disabled]="disablePrev">Prev</button>
-    <span> | </span>
+      (click)="submitModal()"
+      color="primary">Submit Test Modal</button>
     <button
-      (click)="nextSlide()"
-      type="button"
+      class="btn-submit"
+      type="submit"
       mat-raised-button
-      color="primary"
-      [disabled]="disableNext">Next</button>
-  </div>
-  <button
-  class="btn-submit"
-    type="submit"
-    mat-raised-button
-    color="primary">Submit Test</button>
+      color="primary">Submit Test</button>
+    <!-- <div class="submit-modal-div">
+      <mat-card class="submit-modal">
+        <h4>Lorem ipsum dolor sit amet consectetur adipisi</h4>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </mat-card>
+    </div> -->
   </form>
 </div>

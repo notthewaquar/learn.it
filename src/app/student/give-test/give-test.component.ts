@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -12,9 +12,13 @@ import { TestQuestionService } from 'src/app/shared/service/all-test/test-questi
   styleUrls: ['./give-test.component.css']
 })
 
-export class GiveTestComponent implements OnInit {
+export class GiveTestComponent implements OnInit, OnDestroy {
   testInfoList: TestInfoList;
   giveTestMode = true;
+  attemptedQuesCount = 0;
+  testTimerCount = 0;
+  testTimer: any;
+  progressColorPercent = 'primary';
   // test
   previewForm: FormGroup;
   id: number;
@@ -24,11 +28,12 @@ export class GiveTestComponent implements OnInit {
   slideTestLength: number;
   disableNext = false;
   disablePrev = true;
+  submitModalOpen = false;
 
   constructor(
     private router: Router,
     private testQuestionService: TestQuestionService,
-    private testInfoService: TestInfoService
+    private testInfoService: TestInfoService,
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +46,30 @@ export class GiveTestComponent implements OnInit {
         eachTestCard: new FormArray([])
       });
       this.displayEachTest();
+      this.testCountdown();
     }
+  }
+  testCountdown() {
+    const startTime = new Date( '01/01/2020 ' + this.testInfoList.startTime).getHours();
+    const endTime = new Date( '01/01/2020 ' + this.testInfoList.endTime).getHours();
+    // 1 hour
+    const timeDiff1 = endTime - startTime;
+    // const timeDiff = timeDiff1 * 60 * 60 * 1000;
+    const timeDiff = 1 * 60 * 1000;
+
+    let numerator = 0;
+    this.testTimer = setInterval(() => {
+      numerator = numerator + 1000;
+      const convertToPercentage = numerator / timeDiff * 100;
+      // console.log(this.testTimerCount);
+      this.testTimerCount = Math.floor(convertToPercentage);
+      if ( this.testTimerCount >= 70) {
+        this.progressColorPercent = 'warn';
+      }
+    }, 1000);
+    setTimeout(() => {
+      clearInterval(this.testTimer);
+    }, timeDiff);
   }
   displayEachTest() {
     // tslint:disable-next-line: prefer-for-of
@@ -76,10 +104,14 @@ export class GiveTestComponent implements OnInit {
     this.resetTestArr(index);
     (this.previewForm.get('eachTestCard') as FormArray).controls[index].patchValue({ansD: true});
   }
+  submitModal() {
+    this.submitModalOpen = true;
+  }
   onSubmit() {
+    clearInterval(this.testTimer);
+    this.testTimerCount = 0;
     let marks = 0;
     let attemptQuestion = 0;
-    console.clear();
     for (let index = 0; index < this.testInfoList.testQuestion.length; index++) {
       const ansSelCorr = this.testInfoList.testQuestion[index].correct;
       let ansSelA = this.previewForm.value.eachTestCard[index].ansA;
@@ -106,7 +138,8 @@ export class GiveTestComponent implements OnInit {
     }
     console.log('Correct: ' + marks);
     console.log('Attempted: ' + attemptQuestion );
-    alert( 'Correct: ' + marks + '\n' + 'Attempted: ' + attemptQuestion);
+    this.router.navigate(['student/submit-test']);
+    // alert( 'Correct: ' + marks + '\n' + 'Attempted: ' + attemptQuestion);
   }
   nextSlide() {
     if (!this.disableNext) {
@@ -125,5 +158,11 @@ export class GiveTestComponent implements OnInit {
     if (this.slideIndex === 0) {
       this.disablePrev = true;
     }
+  }
+  ngOnDestroy() {
+    clearInterval(this.testTimer);
+  }
+  onNoClick(): void {
+    // this.dialogRef.close();
   }
 }

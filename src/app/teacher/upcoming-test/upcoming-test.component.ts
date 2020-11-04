@@ -30,7 +30,6 @@ export class UpcomingTestComponent implements OnInit {
           this.testInfoList = testInfoList;
         }
     );
-
   }
 
   viewTestInfo(index: number){

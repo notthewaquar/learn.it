@@ -25,6 +25,7 @@ import { PreviewTestComponent } from './teacher/upcoming-test/preview-test/previ
 import { GiveTestComponent } from './student/give-test/give-test.component';
 import { UpcomingStudentTestComponent } from './student/upcoming-student-test/upcoming-student-test.component';
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
+import { StudentSubmitTestComponent } from './student/give-test/student-submit-test/student-submit-test.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent, pathMatch: 'full' },
@@ -49,7 +50,8 @@ const routes: Routes = [
     children: [
       { path: '', component: StudentDashboardComponent },
       { path: 'upcoming-test', component: UpcomingStudentTestComponent },
-      { path: 'give-test', component: GiveTestComponent }
+      { path: 'give-test', component: GiveTestComponent },
+      { path: 'submit-test', component: StudentSubmitTestComponent }
     ]
   },
   { path: 'sign-up', component: SignUpComponent }

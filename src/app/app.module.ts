@@ -42,6 +42,7 @@ import { ClassListService } from './shared/service/class-list/class-list.service
 import { ClassListComponent } from './teacher/class-list/class-list.component';
 import { AllClassListService } from './shared/service/class-list/all-class-list.service';
 import { PreviewTestComponent } from './teacher/upcoming-test/preview-test/preview-test.component';
+import { StudentSubmitTestComponent } from './student/give-test/student-submit-test/student-submit-test.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PreviewTestComponent } from './teacher/upcoming-test/preview-test/previ
     DeleteModalComponent,
     ClassListComponent,
     PreviewTestComponent,
-    StudentDashboardComponent
+    StudentDashboardComponent,
+    StudentSubmitTestComponent
   ],
   entryComponents: [AddEditTestComponent],
   imports: [
