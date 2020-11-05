@@ -19,18 +19,21 @@
     <button type="button" mat-raised-button color="primary">End Time: {{testInfoList.endTime}}</button>
   </mat-card>
   <!-- test cards -->
-  <p>Attempted: 
+  <div>Attempted: 
     <mat-progress-bar 
       mode="determinate" 
       [value]="attemptedQuesCount"></mat-progress-bar>
-  </p>
-  <p>
-    Time left: 
+  </div>
+  <div>
+    <div class="div-info">
+      <span>Time left: </span>
+      <span>{{timeDisplay}}</span>
+    </div>
     <mat-progress-bar 
       mode="determinate" 
       [value]="testTimerCount"
       color="{{progressColorPercent}}"></mat-progress-bar>
-  </p>
+  </div>
   <form
     [formGroup]="previewForm"
     (ngSubmit)="onSubmit()">
@@ -121,16 +124,31 @@
       mat-raised-button
       (click)="submitModal()"
       color="primary">Submit Test Modal</button>
-    <button
+    <!-- <button
       class="btn-submit"
       type="submit"
       mat-raised-button
-      color="primary">Submit Test</button>
-    <!-- <div class="submit-modal-div">
+      color="primary">Submit Test</button> -->
+    <div 
+      class="submit-modal-div"
+      *ngIf="submitModalOpen">
       <mat-card class="submit-modal">
-        <h4>Lorem ipsum dolor sit amet consectetur adipisi</h4>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <h4>Do you want to submit your test</h4>
+        <p>Attempted Question: {{attemptQuestion}}</p>
+        <p>Marks Scored: {{marksScored}}</p>
+        <div class="div-btn">
+          <button
+            class="btn-secondary"
+            type="submit"
+            color="primary"
+            mat-raised-button>Submit</button>
+          <button
+            class="btn-secondary"
+            type="button"
+            (click)="closeModal()"
+            mat-raised-button>Cancle</button>
+        </div>
       </mat-card>
-    </div> -->
+    </div>
   </form>
 </div>

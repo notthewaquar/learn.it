@@ -27,6 +27,7 @@ mat-card {
 h4 {
   font-weight: 700;
   font-size: 18px;
+  margin: 0 0 5px;
 }
 .radio-hide {
   position: fixed;
@@ -58,6 +59,10 @@ label.btn-light {
 }
 .slider-div button {
   width: 20%;
+}
+.div-info {
+  display: flex;
+  justify-content: space-between;
 }
 .btn-submit {
   display: block;
@@ -92,7 +97,15 @@ mat-progress-bar {
   width: auto;
   min-height: inherit;
   max-height: inherit;
-  background: red;
+  text-align: center;
+}
+.submit-modal p {
+  margin: 0;
+}
+.div-btn {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 0;
 }
 @media only screen and (max-width: 500px) {
   .top-info > button {

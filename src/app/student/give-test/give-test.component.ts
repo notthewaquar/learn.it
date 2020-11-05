@@ -17,8 +17,13 @@ export class GiveTestComponent implements OnInit, OnDestroy {
   giveTestMode = true;
   attemptedQuesCount = 0;
   testTimerCount = 0;
+  timeDisplay: any;
   testTimer: any;
+  fullTestTime: number;
   progressColorPercent = 'primary';
+  // test submit
+  marksScored: number;
+  attemptQuestion: number;
   // test
   previewForm: FormGroup;
   id: number;
@@ -52,16 +57,21 @@ export class GiveTestComponent implements OnInit, OnDestroy {
   testCountdown() {
     const startTime = new Date( '01/01/2020 ' + this.testInfoList.startTime).getHours();
     const endTime = new Date( '01/01/2020 ' + this.testInfoList.endTime).getHours();
-    // 1 hour
-    const timeDiff1 = endTime - startTime;
-    // const timeDiff = timeDiff1 * 60 * 60 * 1000;
-    const timeDiff = 1 * 60 * 1000;
+    // test full time in secons
+    // this.fullTestTime = (endTime - startTime) * 60 * 60;
+    this.fullTestTime = 1 * 60;
+    let calcFullTestTime = this.fullTestTime;
+    // HH:MM:SS formatter
+    this.timeDisplay = new Date(this.fullTestTime * 1000).toISOString().substr(11, 8);
+    this.testTimerCount = 0;
 
-    let numerator = 0;
+    let numerator = 1;
     this.testTimer = setInterval(() => {
-      numerator = numerator + 1000;
-      const convertToPercentage = numerator / timeDiff * 100;
-      // console.log(this.testTimerCount);
+      const convertToPercentage = numerator / this.fullTestTime * 100;
+      numerator++;
+      calcFullTestTime--;
+      this.timeDisplay = new Date(calcFullTestTime * 1000).toISOString().substr(11, 8);
+      console.log(this.timeDisplay);
       this.testTimerCount = Math.floor(convertToPercentage);
       if ( this.testTimerCount >= 70) {
         this.progressColorPercent = 'warn';
@@ -69,7 +79,7 @@ export class GiveTestComponent implements OnInit, OnDestroy {
     }, 1000);
     setTimeout(() => {
       clearInterval(this.testTimer);
-    }, timeDiff);
+    }, this.fullTestTime * 1000);
   }
   displayEachTest() {
     // tslint:disable-next-line: prefer-for-of
@@ -106,12 +116,24 @@ export class GiveTestComponent implements OnInit, OnDestroy {
   }
   submitModal() {
     this.submitModalOpen = true;
+    this.calculateMarksAndAttempted();
   }
   onSubmit() {
     clearInterval(this.testTimer);
     this.testTimerCount = 0;
-    let marks = 0;
-    let attemptQuestion = 0;
+    this.router.navigate(['student/submit-test']);
+    this.submitModalOpen = false;
+    console.log('Correct: ' + this.marksScored);
+    console.log('Attempted: ' + this.attemptQuestion );
+    // alert( 'Correct: ' + marks + '\n' + 'Attempted: ' + attemptQuestion);
+  }
+  closeModal() {
+    this.submitModalOpen = false;
+  }
+  calculateMarksAndAttempted() {
+    this.marksScored = 0;
+    this.attemptQuestion = 0;
+
     for (let index = 0; index < this.testInfoList.testQuestion.length; index++) {
       const ansSelCorr = this.testInfoList.testQuestion[index].correct;
       let ansSelA = this.previewForm.value.eachTestCard[index].ansA;
@@ -128,18 +150,14 @@ export class GiveTestComponent implements OnInit, OnDestroy {
         ansSelD = 'D';
       }
       if ( ansSelA === ansSelCorr || ansSelB === ansSelCorr || ansSelC === ansSelCorr || ansSelD === ansSelCorr ) {
-        marks = marks + 1;
+        this.marksScored = this.marksScored + 1;
       }
       if ( ansSelA === 'A' || ansSelB === 'B' || ansSelC === 'C' || ansSelD === 'D' ) {
-        attemptQuestion = attemptQuestion + 1;
+        this.attemptQuestion = this.attemptQuestion + 1;
       } else {
         console.log('not');
       }
     }
-    console.log('Correct: ' + marks);
-    console.log('Attempted: ' + attemptQuestion );
-    this.router.navigate(['student/submit-test']);
-    // alert( 'Correct: ' + marks + '\n' + 'Attempted: ' + attemptQuestion);
   }
   nextSlide() {
     if (!this.disableNext) {
